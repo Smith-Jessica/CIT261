@@ -1,0 +1,111 @@
+input[type=text] {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 5px;
+    box-sizing: border-box;
+  }
+
+  .center {
+    margin: auto;
+    width: 50%;
+    border: none;
+    padding: 20px;
+    text-align: left;
+  }
+
+  form {
+    background-color: #ffffff;
+  }
+
+  body {
+    background-color: #f2f2f2;
+  }
+  body {
+    background-color: #ffffff;
+    padding: 0;
+    margin: 0;
+  }
+  h1 {
+      color: #444777;
+      font-family: Verdana, Geneva, sans-serif;
+  }
+  h2 {
+      color: #492506;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+  }
+  h3 {
+      color: black;
+      font-family: Arial, Helvetica, sans-serif;
+  }
+  p {
+      font-family: Arial, Helvetica, sans-serif;
+  }
+  header {
+      position: sticky;
+    background-color: #ffffff;
+  }
+  
+  ul.menu {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: #060949;
+        overflow: hidden;
+        position: sticky;
+      }
+  .menu a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white;
+    background-color: #060949;
+  }
+  .menu a:hover {
+    background-color: #707179;
+  }
+  img#header {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: auto;
+    max-width: 50%
+  }
+  table {
+      width: 100%;
+    }
+    
+    th#label {
+      height: 50%;
+      font-size: large;
+    }
+  input[type=submit] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      width: 20%;
+      padding: 16px 32px;
+    }
+  input[type=reset] {
+      background-color: #060949;
+      color: white;
+      border: none;
+      width: 20%;
+      padding: 16px 32px;
+  }
+  span#total_payment {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 200%;
+  }
+  .error {
+      color: red;
+      font-size: 100%;
+  }
+  footer {
+      background-color: #494606;
+       width: 100%;
+       position: relative;
+       margin-top: 1000px;
+       padding: 0;
+       clear: both;
+    }
