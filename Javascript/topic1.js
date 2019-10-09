@@ -1,3 +1,13 @@
+class Product{
+  
+  constructor(name, price) {
+    this.name = name;
+    this.price = price;
+    this.checked = false;
+  }
+}
+
+
 function clearErrors() {
     //clear form
     //document.getElementById("order_form").reset();
