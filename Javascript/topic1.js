@@ -67,9 +67,15 @@ function validateForm() {
 
   function isChecked(item, index) {
     if(document.getElementById(index).checked) {
-      checkedItems.push(item);
+     return checkedItems.push(item);
     }
   }
+
+  checkedItems.forEach(print);
+  function print(value) {
+    console.log(value);
+  }
+  
   validatePhone();
   validateNumber();
   validateExpDate();
