@@ -8,7 +8,7 @@ class Product{
 }
 
 
-function clearErrors() {
+/*function clearErrors() {
     //clear form
     //document.getElementById("order_form").reset();
     //clear error messages
@@ -21,7 +21,7 @@ function clearErrors() {
     if (document.getElementById("error_cc_date").style.display === "block") {
       document.getElementById("error_cc_date").style.display = "none";
     }
-  }
+  }*/
 
   function totalPayment() {
     var item_0 = document.getElementById("item_0").checked;
@@ -88,7 +88,7 @@ function clearErrors() {
       document.getElementById("error_cc_num").innerHTML = "";
       correctPhone = true;
 
-      window.clearErrors();
+      //window.clearErrors();
     }
   }
 
@@ -130,7 +130,7 @@ function clearErrors() {
       var correctExpDate = false;
     } else {
       document.getElementById("error_cc_date").innerHTML = "";
-      clearErrors();
+      //clearErrors();
       correctExpDate = true;
     }
   }
