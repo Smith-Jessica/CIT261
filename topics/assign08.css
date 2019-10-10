@@ -152,27 +152,27 @@ td {
     }
 
     .card_view#race {
-        background-image: url("armadillo-races700.jpg");
+        background-image: url("pics/armadillo-races700.jpg");
     }
 
     .card_view#toss {
-        background-image: url("coyote600.jpg");
+        background-image: url("pics/coyote600.jpg");
     }
 
     .card_view#basketball {
-        background-image: url("basketball600.jpg");
+        background-image: url("pics/basketball600.jpg");
     }
 
     .card_view#painting {
-        background-image: url("painting600.jpg");
+        background-image: url("pics/painting600.jpg");
     }
 
     .card_view#drawing {
-        background-image: url("drawing600.jpg");
+        background-image: url("pics/drawing600.jpg");
     }
 
     .card_view#graffiti {
-        background-image: url("graffiti600.jpg");
+        background-image: url("pics/graffiti600.jpg");
     }
 }
 
@@ -203,38 +203,38 @@ td {
     }
 
     .card_view#race {
-        background-image: url("armadillo_race2000.jpg");
+        background-image: url("pics/armadillo_race2000.jpg");
         grid-column: 1 / span 2;
         font-size: 8vw;
     }
 
     .card_view#toss {
-        background-image: url("coyote2000.jpg");
+        background-image: url("pics/coyote2000.jpg");
         grid-column: 1/ span 2;
         font-size: 8vw;
     }
 
     .card_view#basketball {
-        background-image: url("basketball2000.jpg");
+        background-image: url("pics/basketball2000.jpg");
         grid-column: 1/ span 2;
         font-size: 8vw;
     }
 
     .card_view#painting {
-        background-image: url("painting1200.jpg");
+        background-image: url("pics/painting1200.jpg");
         grid-column: 1/ span 2;
         font-size: 8vw;
     }
 
     .card_view#drawing {
-        background-image: url("drawing1200.jpg");
+        background-image: url("pics/drawing1200.jpg");
         grid-column: 1/ span 2;
         font-size: 8vw;
         color: tan;
     }
 
     .card_view#graffiti {
-        background-image: url("graffiti1200.jpg");
+        background-image: url("pics/graffiti1200.jpg");
         grid-column: 1/ span 2;
         font-size: 8vw;
     }
@@ -266,38 +266,38 @@ td {
         }
 
         .card_view#race {
-            background-image: url("armadillo_race2000.jpg");
+            background-image: url("pics/armadillo_race2000.jpg");
             grid-column: 1 / span 2;
             font-size: 8vw;
         }
 
         .card_view#toss {
-            background-image: url("coyote3677.jpg");
+            background-image: url("pics/coyote3677.jpg");
             grid-column: 1/ span 2;
             font-size: 8vw;
         }
 
         .card_view#basketball {
-            background-image: url("basketball3000.jpg");
+            background-image: url("pics/basketball3000.jpg");
             grid-column: 1/ span 2;
             font-size: 8vw;
         }
 
         .card_view#painting {
-            background-image: url("painting2048.jpg");
+            background-image: url("pics/painting2048.jpg");
             grid-column: 1/ span 2;
             font-size: 8vw;
         }
 
         .card_view#drawing {
-            background-image: url("drawing2048.jpg");
+            background-image: url("pics/drawing2048.jpg");
             grid-column: 1/ span 2;
             font-size: 8vw;
             color: tan;
         }
 
         .card_view#graffiti {
-            background-image: url("graffiti2048.jpg");
+            background-image: url("pics/graffiti2048.jpg");
             grid-column: 1/ span 2;
             font-size: 8vw;
         }
