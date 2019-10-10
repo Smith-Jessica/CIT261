@@ -8,6 +8,12 @@ class Product {
   getPrice() {
     return this.price;
   }
+  setStatus(value) {
+    this.checked = value;
+  }
+  getStatus() {
+    return this.checked;
+  }
 }
 
 
@@ -26,7 +32,49 @@ class Product {
     }
   }*/
 
+  function totalPayment() {
+    var item_0 = new Product('Sunflower', 6);
+    var item_1 = new Product('Radish', 8);
+    var item_2 = new Product('Basil', 16);
+    var item_3 = new Product('Peas', 6);
+  
+   /* var item_0 = document.getElementById("item_0").checked;
+    var item_1 = document.getElementById("item_1").checked;
+    var item_2 = document.getElementById("item_2").checked;
+    var item_3 = document.getElementById("item_3").checked;
+  */
+    var total_payment = 0;
+    let allProducts = [item_0, item_1, item_2, item_3];
 
+  for(let x=0; x < allProducts.length; x++) {
+    if(allProducts[x].getStatus() == true){
+      total_payment += allProducts[x].getPrice();
+    }
+  }
+  /*  allProducts.forEach(add);
+    function add(value, index) {
+      if(getStatus() == true){
+        total_payment += value.getPrice();
+      }
+    } */
+   /* //check each item_0-3 if they are checked
+    if (item_0) {
+      total_payment = total_payment + price_0;
+    }
+    if (item_1) {
+      total_payment = total_payment + price_1;
+    }
+    if (item_2) {
+      total_payment = total_payment + price_2;
+    }
+    if (item_3) {
+      total_payment = total_payment + price_3;
+    }
+    //each one that is checked add to the total_payment*/
+    //display the total_payment
+    document.getElementById("total_payment").innerHTML = total_payment.toFixed(2);
+  
+  }
 
 function validateForm() {
   var item_0 = new Product('Sunflower', 6);
@@ -36,60 +84,18 @@ function validateForm() {
 
   let allProducts = array(item_0, item_1, item_2, item_3);
 
-  let checkedItems = allProducts.map(isChecked);
+  allProducts.forEach(isChecked);
 
   function isChecked(item, index) {
     if(document.getElementById(index).checked) {
-     return checkedItems.push(item);
+     item.setStatus(true);
     }
-  }
-
-  checkedItems.forEach(print);
-  function print(value) {
-    console.log(value);
   }
   
   validatePhone();
   validateNumber();
   validateExpDate();
-  totalPayment(checkedItems);
-}
-
-function totalPayment(checkedItems) {
-  var item_0 = new Product('Sunflower', 6);
-  var item_1 = new Product('Radish', 8);
-  var item_2 = new Product('Basil', 16);
-  var item_3 = new Product('Peas', 6);
-
- /* var item_0 = document.getElementById("item_0").checked;
-  var item_1 = document.getElementById("item_1").checked;
-  var item_2 = document.getElementById("item_2").checked;
-  var item_3 = document.getElementById("item_3").checked;
-*/
-  var total_payment = 0;
-
-
-  checkedItems.forEach(add);
-  function add(value) {
-    total_payment += value.getPrice();
-  }
- /* //check each item_0-3 if they are checked
-  if (item_0) {
-    total_payment = total_payment + price_0;
-  }
-  if (item_1) {
-    total_payment = total_payment + price_1;
-  }
-  if (item_2) {
-    total_payment = total_payment + price_2;
-  }
-  if (item_3) {
-    total_payment = total_payment + price_3;
-  }
-  //each one that is checked add to the total_payment*/
-  //display the total_payment
-  document.getElementById("total_payment").innerHTML = total_payment.toFixed(2);
-
+  totalPayment();
 }
 
 function validatePhone() {
