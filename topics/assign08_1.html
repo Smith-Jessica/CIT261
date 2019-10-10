@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Academics</title>
+
+    <link rel="stylesheet" type="text/css" href="assign08.css">
+</head>
+
+<body>
+    <header>
+        <div id="header_logo"><img src="logo.jpg" alt="Awesome University"></div>
+        <nav>
+            <ul>
+                <li><a href="assign08.html">University</a></li>
+                <li><a href="assign08_1.html">Academics</a></li>
+                <li><a href="assign08_2.html">Athletics</a></li>
+                <li><a href="assign08_3.html">Art</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Academic Excellence</h1>
+    <p>Ut per modo dicunt impressive, putent accusata mnesarchum pro ad. Suas decore mollis ad vel, mea eius graeci
+        eligendi in, legere probatus nam eu. Ut congue utamur gubergren qui. Cum knowledge electram argumentum no, cibo
+        deterruisset usu ne, duo id congue accusam incorrupte. Platonem posidonium scripserit ex vix, mea an tota
+        quaestio deseruisse, pri alii academy in. Falli nominati quo ne.</p>
+    <h1>Graduate Fast</h1>
+    <p>Te nibh tota pericula vel. Nec aeque facete ei, ad perpetua periculis percipitur pro. No mel elitr class
+        dissentias, wisi assum institute sea an. Id feugiat ceteros insolens pri, ex mandamus periculis omittantur cum.
+        Vix et debet debitis assueverit, mel eirmod eruditi college cu.</p>
+    <h1>Offered Courses</h1>
+    <div>
+        <table>
+            <tr>
+                <th>Course Code</th>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Required for Graduation</th>
+            </tr>
+            <tr>
+                <td>AS100</td>
+                <td>Awesome 101</td>
+                <td>This is an introductory course on how to be awesome.</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>AS200</td>
+                <td>Intermediate Awesomeness</td>
+                <td>This is an intermediate course on how to be awesome.</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>PS100</td>
+                <td>Photoshopping 101</td>
+                <td>This is an introductory course on how to use photoshop to give credibility to your awesomeness.</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>AS300</td>
+                <td>Advanced Awesomeness</td>
+                <td>This is an advanced course on how to be awesome.</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>FB100</td>
+                <td>Facebook 101</td>
+                <td>This is an introductory course on how to flaunt your awesomeness on facebook.</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>FB200</td>
+                <td>Intermediate Facebook Skills</td>
+                <td>This is an intermediate course on how be awesome on Facebook.</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>FB300</td>
+                <td>Advanced Facebook Skills</td>
+                <td>This is an advanced course on how to use facebook to be awesome.</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>IS100</td>
+                <td>Instagram 101</td>
+                <td>This is an introductory course on how to show your awesomeness on Instagram.</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>IS200</td>
+                <td>Intermediate Instagram Skills</td>
+                <td>This is an intermediate course on how to use Instagram to be awesome.</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>JS500</td>
+                <td>Master Course</td>
+                <td>This course is a 14-week internship with the ONLY living Master of Awesome, Jordan Smith.</td>
+                <td>No</td>
+            </tr>
+        </table>
+    </div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <footer>
+        <div class="footer-container">
+            <div>
+                <div>Address</div>
+                <div>111 Best Road Ever</div>
+                <div>Best Place Ever</div>
+            </div>
+
+            <div class="sources">Photo by <a
+                    href="https://burst.shopify.com/@shopifypartners?utm_campaign=photo_credit&amp;utm_content=Free+Stock+Photo+of+Blank+Paper+On+Paint+Easel+%E2%80%94+HD+Images&amp;utm_medium=referral&amp;utm_source=credit">Shopify
+                    Partners</a> from <a
+                    href="https://burst.shopify.com/education?utm_campaign=photo_credit&amp;utm_content=Free+Stock+Photo+of+Blank+Paper+On+Paint+Easel+%E2%80%94+HD+Images&amp;utm_medium=referral&amp;utm_source=credit">Burst</a>
+            </div>
+            <div class="sources">Logo made with <a href="/en/" title="Free Online Logo Maker">DesignEvo</a></div>
+        </div>
+    </footer>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
+</body>
+
+</html>

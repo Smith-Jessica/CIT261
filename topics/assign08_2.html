@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Athletics</title>
+
+    <link rel="stylesheet" type="text/css" href="assign08.css">
+</head>
+<body>
+    <header>
+        <div id="header_logo"><img src="logo.jpg" alt="Awesome University"></div>
+        <nav>
+            <ul>
+                <li><a href="assign08.html">University</a></li>
+                <li><a href="assign08_1.html">Academics</a></li>
+                <li><a href="assign08_2.html">Athletics</a></li>
+                <li><a href="assign08_3.html">Art</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="flex-container" id="athletics">
+        <img src="armlinder-01.png" alt="Awesome Ashton the Armadillo" id="ashton">
+        <h3>Ashton the Armadillo</h3>
+        <h1 id="sport_h1">Awesome Sports</h1>
+        <p>Et erat meliore sapientem usu, feugiat perpetua persecuti usu te. Vis solum regione aliquid ad. Maiorum
+            omnesque efficiendi ei has, ad soluta fierent usu, vim congue libris cu. Sea tantas electram iracundia ex.
+            Vim delenit corpora tincidunt an, liber legere recusabo te nam, magna labitur mel ut.</p>
+    </div>
+    <div class="grid">
+        <h1 class="card_view" id="race">Armadillo Races</h1>
+        <h1 class="card_view" id="toss">Coyote Toss</h1>
+        <h1 class="card_view" id="basketball">Basketball</h1>
+        <h1 class="card_view" id="volleyball">Volleyball</h1>
+    </div>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <footer>
+        <div class="footer-container">
+            <div>
+                <div>Address</div>
+                <div>111 Best Road Ever</div>
+                <div>Best Place Ever</div>
+            </div>
+
+            <div class="sources">Photo by <a
+                    href="https://burst.shopify.com/@shopifypartners?utm_campaign=photo_credit&amp;utm_content=Free+Stock+Photo+of+Blank+Paper+On+Paint+Easel+%E2%80%94+HD+Images&amp;utm_medium=referral&amp;utm_source=credit">Shopify
+                    Partners</a> from <a
+                    href="https://burst.shopify.com/education?utm_campaign=photo_credit&amp;utm_content=Free+Stock+Photo+of+Blank+Paper+On+Paint+Easel+%E2%80%94+HD+Images&amp;utm_medium=referral&amp;utm_source=credit">Burst</a>
+            </div>
+            <div class="sources">Logo made with <a href="/en/" title="Free Online Logo Maker">DesignEvo</a></div>
+            <div class="sources">Ashton the Armadillo Image by <a
+                    href="https://pixabay.com/users/Rabbixel-7188181/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3405115">Rabbixel</a>
+                from <a
+                    href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3405115">Pixabay</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
+</body>
+
+</html>

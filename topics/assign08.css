@@ -1,0 +1,305 @@
+nav {
+    font-size: 2rem;
+    background-color: tan;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav ul li:hover {
+    background-color: #555;
+}
+p, h1, h2{
+    font-size: calc(16px + 1vw);
+}
+div#header_logo {
+    display: flex;
+    justify-content: center;
+}
+
+div.menu_item {
+    flex-direction: row;
+    align-items: flex-start;
+    display: inline-block;
+
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+
+}
+
+picture {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    max-width: 100vw;
+}
+
+picture img {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+}
+
+.footer-container {
+    font-size: calc(16px + 1vw);
+    background-color: rgb(90, 72, 40);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+div.sources {
+    font-size: calc(16px + 0.5vw);
+}
+
+button#myBtn {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    bottom: 20px;
+    /* Place the button at the bottom of the page */
+    right: 30px;
+    /* Place the button 30px from the right */
+    z-index: 99;
+    /* Make sure it does not overlap */
+    border: none;
+    outline: none;
+    background-color: gray;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+table {
+    background-color: beige;
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: calc(16px + 1vw);
+}
+
+th {
+    background-color: grey;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+td {
+    padding: 5px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.card_view {
+    color: white;
+    grid-column: 1 / span 3;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#ashton {
+    max-width: 50vw;
+    max-height: 30vh;
+
+}
+
+.center {
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        text-align: center;
+    }
+
+    .flex-container#athletics {
+        flex-direction: column;
+    }
+
+    .grid {
+        display: inline-grid;
+        grid-template-columns: auto;
+
+    }
+
+    .card_view#race {
+        background-image: url("armadillo-races700.jpg");
+    }
+
+    .card_view#toss {
+        background-image: url("coyote600.jpg");
+    }
+
+    .card_view#basketball {
+        background-image: url("basketball600.jpg");
+    }
+
+    .card_view#painting {
+        background-image: url("painting600.jpg");
+    }
+
+    .card_view#drawing {
+        background-image: url("drawing600.jpg");
+    }
+
+    .card_view#graffiti {
+        background-image: url("graffiti600.jpg");
+    }
+}
+
+@media only screen and (min-width: 600px) {
+
+    nav ul {
+        flex-direction: row;
+    }
+
+    nav ul li {
+        text-align: center;
+    }
+
+    .flex-container#athletics {
+        flex-direction: column;
+    }
+
+    .flex-container#athletics img {
+        object-fit: contain;
+        height: auto;
+        width: 50vw;
+    }
+
+    .grid {
+        display: inline-grid;
+        grid-template-columns: 50vw 50vw;
+        grid-template-rows: 30vh 30vh 30vh;
+    }
+
+    .card_view#race {
+        background-image: url("armadillo_race2000.jpg");
+        grid-column: 1 / span 2;
+        font-size: 8vw;
+    }
+
+    .card_view#toss {
+        background-image: url("coyote2000.jpg");
+        grid-column: 1/ span 2;
+        font-size: 8vw;
+    }
+
+    .card_view#basketball {
+        background-image: url("basketball2000.jpg");
+        grid-column: 1/ span 2;
+        font-size: 8vw;
+    }
+
+    .card_view#painting {
+        background-image: url("painting1200.jpg");
+        grid-column: 1/ span 2;
+        font-size: 8vw;
+    }
+
+    .card_view#drawing {
+        background-image: url("drawing1200.jpg");
+        grid-column: 1/ span 2;
+        font-size: 8vw;
+        color: tan;
+    }
+
+    .card_view#graffiti {
+        background-image: url("graffiti1200.jpg");
+        grid-column: 1/ span 2;
+        font-size: 8vw;
+    }
+
+    @media only screen and (min-width: 1000px) {
+
+        nav ul {
+            flex-direction: row;
+        }
+
+        nav ul li {
+            text-align: center;
+        }
+
+        .flex-container#athletics {
+            flex-direction: column;
+        }
+
+        .flex-container#athletics img {
+            object-fit: contain;
+            height: auto;
+            width: 50vw;
+        }
+
+        .grid {
+            display: inline-grid;
+            grid-template-columns: 50vw 50vw;
+            grid-template-rows: 60vh 60vh 60vh;
+        }
+
+        .card_view#race {
+            background-image: url("armadillo_race2000.jpg");
+            grid-column: 1 / span 2;
+            font-size: 8vw;
+        }
+
+        .card_view#toss {
+            background-image: url("coyote3677.jpg");
+            grid-column: 1/ span 2;
+            font-size: 8vw;
+        }
+
+        .card_view#basketball {
+            background-image: url("basketball3000.jpg");
+            grid-column: 1/ span 2;
+            font-size: 8vw;
+        }
+
+        .card_view#painting {
+            background-image: url("painting2048.jpg");
+            grid-column: 1/ span 2;
+            font-size: 8vw;
+        }
+
+        .card_view#drawing {
+            background-image: url("drawing2048.jpg");
+            grid-column: 1/ span 2;
+            font-size: 8vw;
+            color: tan;
+        }
+
+        .card_view#graffiti {
+            background-image: url("graffiti2048.jpg");
+            grid-column: 1/ span 2;
+            font-size: 8vw;
+        }
+    }
+}

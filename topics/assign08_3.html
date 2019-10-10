@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Art</title>
+
+    <link rel="stylesheet" type="text/css" href="assign08.css">
+</head>
+<body>
+    <header>
+        <div id="header_logo"><img src="logo.jpg" alt="Awesome University"></div>
+        <nav>
+            <ul>
+                <li><a href="assign08.html">University</a></li>
+                <li><a href="assign08_1.html">Academics</a></li>
+                <li><a href="assign08_2.html">Athletics</a></li>
+                <li><a href="assign08_3.html">Art</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1 class="center">Art For the Ages</h1>
+    <div class="grid">
+        <h1 class="card_view" id="painting">Painting</h1>
+        <h1 class="card_view" id="drawing">Drawing</h1>
+        <h1 class="card_view" id="graffiti">Graffiti -- It's an Art!</h1>
+    </div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <footer>
+        <div class="footer-container">
+            <div>
+                <div>Address</div>
+                <div>111 Best Road Ever</div>
+                <div>Best Place Ever</div>
+            </div>
+
+            <div class="sources">Photo by <a
+                    href="https://burst.shopify.com/@shopifypartners?utm_campaign=photo_credit&amp;utm_content=Free+Stock+Photo+of+Blank+Paper+On+Paint+Easel+%E2%80%94+HD+Images&amp;utm_medium=referral&amp;utm_source=credit">Shopify
+                    Partners</a> from <a
+                    href="https://burst.shopify.com/education?utm_campaign=photo_credit&amp;utm_content=Free+Stock+Photo+of+Blank+Paper+On+Paint+Easel+%E2%80%94+HD+Images&amp;utm_medium=referral&amp;utm_source=credit">Burst</a>
+            </div>
+            <div class="sources">Logo made with <a href="/en/" title="Free Online Logo Maker">DesignEvo</a></div>
+        </div>
+    </footer>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
+</body>
+
+</html>

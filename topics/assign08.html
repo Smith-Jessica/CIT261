@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome University Home</title>
+
+    <link rel="stylesheet" type="text/css" href="assign08.css">
+</head>
+<body>
+    <header>
+        <div id="header_logo"><img src="logo.jpg" alt="Awesome University"></div>
+        <nav>
+            <ul>
+                <li><a href="assign08.html">University</a></li>
+                <li><a href="assign08_1.html">Academics</a></li>
+                <li><a href="assign08_2.html">Athletics</a></li>
+                <li><a href="assign08_3.html">Art</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="flex-container">
+        <picture>
+            <source media="(max-width: 600px)" srcset="grad_300x200.jpg">
+            <source media="(min-width: 600px)" srcset="grad_1300x867.jpg">
+            <source media="(min-width: 1000px)" srcset="grad_4400x2900.jpg">
+            <img src="grad_1300x867.jpg" alt="university graduate">
+        </picture>
+    </div>
+    <div>
+        <h1>Why This is The Best University</h1>
+        <p>School decore recusabo eum, vis nisl diceret rationibus ea, ex autem feugait vix. Awesome saepe legere
+            inimicus
+            te, vim ex eros vero indoctum. Hendrerit favorite in eos, per libris latine denique ut, ad illum postea
+            quodsi has. Summo bonorum hendrerit mel ea, te perpetua maiestatis sea.</p>
+        <h2>Amazing Food</h2>
+        <p>Ne quas incredible recusabo eum, vis nisl diceret rationibus ea, ex autem feugait vix. Vix saepe legere
+            inimicus
+            te, vim ex eros vero indoctum. Hendrerit moderatius in eos, per libris latine denique ut, ad illum postea
+            quodsi has. Marvelous bonorum hendrerit mel ea, te perpetua maiestatis sea.</p>
+        <div class="flex-container">
+            <picture>
+                <source media="(max-width: 600px)" srcset="640px-Campus.jpg">
+                <source media="(min-width: 600px)" srcset="Campus-1024.jpg">
+                <source media="(min-width: 1000px)" srcset="Campus2240.jpg">
+                <img src="Campus-1024.jpg" alt="awesome university campus">
+            </picture>
+        </div>
+        <h2>Impressive Campus</h2>
+        <p>Grand school percipitur duo te. Eam no congue suscipit evertitur, in quem justo dictas vim, vel ad fugit
+            essent
+            assentior. In usu fugit nostrud consequat, magna quaeque pri ea, nostrum albucius insolens ea quo. An eam
+            tibique qualisque. Ut quem utinam eum, duo alia knowledge temporibus ut.</p>
+        <div class="flex-container">
+            <picture>
+                <source media="(max-width: 600px)" srcset="100-600px.jpg" id="picture_grad">
+                <source media="(min-width: 600px)" srcset="100.jpg">
+                <source media="(min-width: 1000px)" srcset="100.jpg">
+                <img src="100.jpg" alt="perfect awesome score" style="width:auto;">
+            </picture>
+        </div>
+        <h2>Perfect Awesome Score</h2>
+        <p>Vel deserunt awe-inspiring definiebas ne, his magna omnis fabulas eu, cu partem constituto contentiones usu.
+            Per
+            ad fuisset education consectetuer. Ea vitae invidunt est, hinc vivendo aliquando at eam. Ne sea probo
+            insolens. Graece nemore sensibus sea ex. Ut affert numquam instructor mea.</p>
+    </div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <footer>
+        <div class="footer-container">
+            <div>
+                <div>Address</div>
+                <div>111 Best Road Ever</div>
+                <div>Best Place Ever</div>
+            </div>
+
+            <div class="sources">Photo by <a
+                    href="https://burst.shopify.com/@shopifypartners?utm_campaign=photo_credit&amp;utm_content=Free+Stock+Photo+of+Blank+Paper+On+Paint+Easel+%E2%80%94+HD+Images&amp;utm_medium=referral&amp;utm_source=credit">Shopify
+                    Partners</a> from <a
+                    href="https://burst.shopify.com/education?utm_campaign=photo_credit&amp;utm_content=Free+Stock+Photo+of+Blank+Paper+On+Paint+Easel+%E2%80%94+HD+Images&amp;utm_medium=referral&amp;utm_source=credit">Burst</a>
+            </div>
+            <div class="sources">Logo made with <a href="/en/" title="Free Online Logo Maker">DesignEvo</a></div>
+        </div>
+    </footer>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
+</body>
+
+</html>
