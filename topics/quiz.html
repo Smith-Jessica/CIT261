@@ -23,43 +23,9 @@
         </nav>
     </header>
     <div class="quiz">
-
-        <p>Does your name start with a "J"?</p>
-        <input type="radio" name="q1" value="A">Yes<br>
-        <input type="radio" name="q1" value="B">No<br><br>
-        <button onclick="checkAnswer()">Check Answer</button>
-        <span id="message1"></span>
-
-        <p>Do you like country music?</p>
-        <input type="radio" name="q2" value="A">Yes, I love it!<br>
-        <input type="radio" name="q2" value="B">Sometimes<br>
-        <input type="radio" name="q2" value="C">Not really, just a song here or there. Mostly new stuff.<br>
-        <input type="radio" name="q2" value="D">No. I hate it.<br><br>
-        <button onclick="checkAnswer()">Check Answer</button>
-        <span id="message2"></span>
-
-        <p>How much do you love skiing?</p>
-        <input type="radio" name="q3" value="A">I love it and go every chance I get!<br>
-        <input type="radio" name="q3" value="B">I haven't tried it but would love to!<br>
-        <input type="radio" name="q3" value="C">I don't really like it but might go if my friends convince me.<br>
-        <input type="radio" name="q3" value="D">I hate it and will never go ever again.<br><br>
-        <button onclick="checkAnswer()">Check Answer</button>
-        <span id="message3"></span>
-
-        <p>Do you dream of owning a ranch or already own one?</p>
-        <input type="radio" name="q4" value="A">Yes<br>
-        <input type="radio" name="q4" value="B">No<br><br>
-        <button onclick="checkAnswer()">Check Answer</button>
-        <span id="message4"></span>
-
-        <p>How much do you love mountain biking?</p>
-        <input type="radio" name="q5" value="A">I love it and go every chance I get!<br>
-        <input type="radio" name="q5" value="B">I haven't tried it but would love to!<br>
-        <input type="radio" name="q5" value="C">I don't really like it but might go if my friends convince me.<br>
-        <input type="radio" name="q5" value="D">I hate it and will never go ever again.<br><br>
-        <button onclick="checkAnswer()">Check Answer</button>
-        <span id="message5"></span>
-
+        <div id="question"></div>
+        <button onclick="buildQuiz()">Take Quiz</button>
+        
     </div>
     </body>
     </html> 

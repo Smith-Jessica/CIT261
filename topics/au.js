@@ -17,6 +17,41 @@ function topFunction() {
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
+function buildQuiz(){
+    //AJAX to get json file for quiz questions
+    var display = document.getElementById("question");
+
+    var xmlhttp = new XMLHttpRequest();      
+    xmlhttp.open("GET", "questions.json");
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.send();      
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+        var question = JSON.parse(this.responseText);
+        var answer = new Array();
+
+        display.innerHTML = question.text;
+
+        Object.keys(question).forEach(function(element, index) {
+            answer[index] = element;
+            console.log(element);
+            console.log(index);
+          });
+        //display the first question
+        display.innerHTML = question.text;
+        answer.forEach(function(element) {
+            display.innerHTML = element;
+            console.log(element);
+          });
+
+
+      } else {
+        display.innerHTML = "Loading...";
+      };
+    }
+
+}
+
 function checkAnswer() {
     if(document.getElementById("q1").value == "A"){
         document.getElementById("message1").innerHTML = "That is correct!";
