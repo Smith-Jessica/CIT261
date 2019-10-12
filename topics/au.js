@@ -48,9 +48,24 @@ function buildQuiz(){
     xmlhttp.send();      
     xmlhttp.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
-        var question = JSON.parse(this.responseText);
+       // var question = new Question();
+        var obj = JSON.parse(this.responseText);
         
-        displayFirstQuestion(display, question);
+        var q1 = obj.q1;
+        var q2 = obj.q2;
+        var q3 = obj.q3;
+        var q4 = obj.q4;
+        var q5 = obj.q5;
+
+        var obj1 = Object.assign(new Question, q1);
+        var obj2 = Object.assign(new Question, q2);
+        var obj3 = Object.assign(new Question, q3);
+        var obj4 = Object.assign(new Question, q4);
+        var obj5 = Object.assign(new Question, q5);
+
+        var objArray = [obj1, obj2, obj3, obj4, obj5];
+
+        displayFirstQuestion(display, objArray);
         removeButton();
 
       } else {
@@ -59,11 +74,11 @@ function buildQuiz(){
     }
 
 }
-function displayFirstQuestion(display, question) {
-    display.innerHTML = question.q1.text + "<br>";
+function displayFirstQuestion(display, questionArray) {
+    display.innerHTML = questionArray[0].text + "<br>";
 
     //display the first question
-    for(var x = 0; x < question.q1.answers.length; x++){
+    for(var x = 0; x < questionArray[0].answers.length; x++){
 
        // var target = document.getElementById("question");
         
@@ -73,7 +88,7 @@ function displayFirstQuestion(display, question) {
         input.id = "input";
         input.className = "radio";
 
-        label.innerHTML = "&nbsp;"+question.q1.answers[x]+"<br>";
+        label.innerHTML = "&nbsp;"+questionArray[0].answers[x]+"<br>";
         
         //input.innerHTML = "&nbsp;"+question.q1.answers[x]+"<br>";
         document.getElementById("question").appendChild(input);
