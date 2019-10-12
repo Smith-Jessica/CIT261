@@ -16,3 +16,13 @@ function topFunction() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+
+function checkAnswer() {
+    if(document.getElementById("q1").value == "A"){
+        document.getElementById("message1").innerHTML = "That is correct!";
+    }
+    else{
+        document.getElementById("message1").innerHTML = "Incorrect! Try again.";
+    }
+
+}

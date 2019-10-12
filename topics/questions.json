@@ -1,0 +1,8 @@
+{
+    "q1":{"text":"Is your name Jordan?", "answers":{"A":"yes","B":"No"},"score":"5"},
+    "q2":{"text":"Do you like country music?", "answers":{"A":"Yes, I love it!","B":"Sometimes", "C":"Not really, just a song here or there. Mostly new stuff.", "D":"No. I hate it."}, "score":"20"},
+    "q3":{"text":"How much do you love skiing?", "answers":{"A":"I love it and go every chance I get!","B":"I haven't tried it but would love to!", "C":"I don't really like it but might go if my friends convince me.", "D":"I hate it and will never go ever again."}, "score":"20"},
+    "q4":{"text":"Do you dream of owning or already own a ranch or farm?","answers":{"A":"yes","B":"No"}, "score":"20"},
+    "q5":{"text":"How much do you love mountain biking?", "answers":{"A":"I love it and go every chance I get!","B":"I haven't tried it but would love to!", "C":"I don't really like it but might go if my friends convince me.", "D":"I hate it and will never go ever again."}, "score":"20"}
+    
+}
