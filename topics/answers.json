@@ -1,0 +1,8 @@
+{
+    "q1":{"answer":"A", "score":"5"},
+    "q2":{"answer":"A", "score":"10", "answer1":"B", "score1":"5"},
+    "q3":{"answer":"A", "score":"20", "answer1":"B", "score1":"10"},
+    "q4":{"answer":"A", "score":"5"},
+    "q5":{"answer":"A", "score":"20", "answer1":"B", "score1":"10"}
+    
+}
