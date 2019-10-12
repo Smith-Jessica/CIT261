@@ -28,34 +28,55 @@ function buildQuiz(){
     xmlhttp.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
         var question = JSON.parse(this.responseText);
-        //var qkeys = Object.keys(question);
-        //var answer = new Array();
-        display.innerHTML = question.q1.text;
-
-        //display the first question
-        for(var x = 0; x < question.q1.answers.length; x++){
-
-            var target = document.getElementById("question");
-            
-            var html = document.createElement('div');
-            
-            var input = "<input type='radio'>&nbsp;"+question.q1.answers[x]+"<br>";
-
-            html.innerHTML = input;
-            target.parentNode.insertBefore(html, target.nextSibling);
-            
-        }
-        var button = document.createElement('button');
-        button.innerHTML = "Next Question";
-        document.body.appendChild(button);
-        target = button;
-        target.parentNode.insertBefore(html, target.nextSibling);
+        
+        displayFirstQuestion(display, question);
+        removeButton();
 
       } else {
         display.innerHTML = "Loading...";
       };
     }
 
+}
+function displayFirstQuestion(display, question) {
+    display.innerHTML = question.q1.text + "<br>";
+
+    //display the first question
+    for(var x = 0; x < question.q1.answers.length; x++){
+
+        var target = document.getElementById("question");
+        
+        var label = document.createElement('label');
+        var input = document.createElement('input');
+        input.type = "radio";
+        input.id = "input";
+        input.className = "radio";
+
+        label.innerHTML = "&nbsp;"+question.q1.answers[x]+"<br>";
+        
+        //input.innerHTML = "&nbsp;"+question.q1.answers[x]+"<br>";
+        document.getElementById("question").appendChild(input);
+        document.getElementById("question").appendChild(label);
+        
+        //document.getElementById("input").appendChild("&nbsp;"+question.q1.answers[x]+"<br>")
+        //input.innerHTML = "&nbsp;"+question.q1.answers[x]+"<br>";
+       // var input = "<input type='radio'>&nbsp;"+question.q1.answers[x]+"<br>";
+
+        //html.innerHTML = input;
+        //target.parentNode.insertBefore(input, target.nextSibling);
+        
+    }
+    var button = document.createElement('button');
+    button.innerHTML = "Next Question";
+    document.getElementById("question").appendChild(button);
+    target = input;
+    //target.parentNode.insertBefore(button, target.nextSibling);
+
+}
+
+function removeButton() {
+    var button = document.getElementById("takeQuiz");
+    button.parentNode.removeChild(button);
 }
 
 function checkAnswer() {
