@@ -17,6 +17,27 @@ function topFunction() {
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
+class Question {
+
+    constructor(text, answers, score) {
+      this.text = text;
+      this.answers = answers;
+      this.score = score;
+    }
+    getText() {
+      return this.text;
+    }
+    getAnswers() {
+       return this.answers;
+    }
+    getScore() {
+      return this.score;
+    }
+    
+}
+
+
+
 function buildQuiz(){
     //AJAX to get json file for quiz questions
     var display = document.getElementById("question");
@@ -44,7 +65,7 @@ function displayFirstQuestion(display, question) {
     //display the first question
     for(var x = 0; x < question.q1.answers.length; x++){
 
-        var target = document.getElementById("question");
+       // var target = document.getElementById("question");
         
         var label = document.createElement('label');
         var input = document.createElement('input');
@@ -68,10 +89,10 @@ function displayFirstQuestion(display, question) {
     }
     var button = document.createElement('button');
     button.innerHTML = "Next Question";
+    button.addEventListener('click', nextQuestion);
     document.getElementById("question").appendChild(button);
     target = input;
-    //target.parentNode.insertBefore(button, target.nextSibling);
-
+    
 }
 
 function removeButton() {
@@ -79,7 +100,19 @@ function removeButton() {
     button.parentNode.removeChild(button);
 }
 
+function nextQuestion() {
+    //check what question we are on
+
+    //add the previous button if we are not on the first question
+    //check that their answer is correct
+    //display the next question
+    console.log("This is interesting");
+}
+
 function checkAnswer() {
+    //if answer is correct alert Good Job with an ok button
+    //if answer is incorrect alert Try Again with an ok button
+
     if(document.getElementById("q1").value == "A"){
         document.getElementById("message1").innerHTML = "That is correct!";
     }
