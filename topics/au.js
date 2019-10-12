@@ -20,7 +20,7 @@ function topFunction() {
 function buildQuiz(){
     //AJAX to get json file for quiz questions
     var display = document.getElementById("question");
-
+    
     var xmlhttp = new XMLHttpRequest();      
     xmlhttp.open("GET", "questions.json");
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -28,22 +28,28 @@ function buildQuiz(){
     xmlhttp.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
         var question = JSON.parse(this.responseText);
-        var answer = new Array();
+        //var qkeys = Object.keys(question);
+        //var answer = new Array();
+        display.innerHTML = question.q1.text;
 
-        display.innerHTML = question.text;
-
-        Object.keys(question).forEach(function(element, index) {
-            answer[index] = element;
-            console.log(element);
-            console.log(index);
-          });
         //display the first question
-        display.innerHTML = question.text;
-        answer.forEach(function(element) {
-            display.innerHTML = element;
-            console.log(element);
-          });
+        for(var x = 0; x < question.q1.answers.length; x++){
 
+            var target = document.getElementById("question");
+            
+            var html = document.createElement('div');
+            
+            var input = "<input type='radio'>&nbsp;"+question.q1.answers[x]+"<br>";
+
+            html.innerHTML = input;
+            target.parentNode.insertBefore(html, target.nextSibling);
+            
+        }
+        var button = document.createElement('button');
+        button.innerHTML = "Next Question";
+        document.body.appendChild(button);
+        target = button;
+        target.parentNode.insertBefore(html, target.nextSibling);
 
       } else {
         display.innerHTML = "Loading...";
