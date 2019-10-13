@@ -1,4 +1,4 @@
- // When the user scrolls down 20px from the top of the document, show the button
+ /*// When the user scrolls down 20px from the top of the document, show the button
  window.onscroll = function () {
     scrollFunction()
 };
@@ -16,7 +16,7 @@ function topFunction() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
-
+*/
 class Question {
 
     constructor(text, answers, score) {
@@ -40,8 +40,8 @@ class Question {
 
 function buildQuiz(){
     //AJAX to get json file for quiz questions
-    var display = document.getElementById("question");
     
+    var display = document.getElementById("quiz");
     var xmlhttp = new XMLHttpRequest();      
     xmlhttp.open("GET", "questions.json");
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -63,9 +63,12 @@ function buildQuiz(){
         var obj4 = Object.assign(new Question, q4);
         var obj5 = Object.assign(new Question, q5);
 
-        var objArray = [obj1, obj2, obj3, obj4, obj5];
+        console.log(obj5);
 
-        displayFirstQuestion(display, objArray);
+        var objArray = [obj1, obj2, obj3, obj4, obj5];
+        var currQ = 0;
+
+        displayQuestions(objArray, currQ);
         removeButton();
 
       } else {
@@ -74,40 +77,41 @@ function buildQuiz(){
     }
 
 }
-function displayFirstQuestion(display, questionArray) {
-    display.innerHTML = questionArray[0].text + "<br>";
-
-    //display the first question
-    for(var x = 0; x < questionArray[0].answers.length; x++){
-
-       // var target = document.getElementById("question");
-        
-        var label = document.createElement('label');
-        var input = document.createElement('input');
-        input.type = "radio";
-        input.id = "input";
-        input.className = "radio";
-
-        label.innerHTML = "&nbsp;"+questionArray[0].answers[x]+"<br>";
-        
-        //input.innerHTML = "&nbsp;"+question.q1.answers[x]+"<br>";
-        document.getElementById("question").appendChild(input);
-        document.getElementById("question").appendChild(label);
-        
-        //document.getElementById("input").appendChild("&nbsp;"+question.q1.answers[x]+"<br>")
-        //input.innerHTML = "&nbsp;"+question.q1.answers[x]+"<br>";
-       // var input = "<input type='radio'>&nbsp;"+question.q1.answers[x]+"<br>";
-
-        //html.innerHTML = input;
-        //target.parentNode.insertBefore(input, target.nextSibling);
-        
-    }
-    var button = document.createElement('button');
-    button.innerHTML = "Next Question";
-    button.addEventListener('click', nextQuestion);
-    document.getElementById("question").appendChild(button);
-    target = input;
+function displayQuestions(questionArray, currQ) {
     
+    
+
+    for(var y = 0; y < questionArray.length; y++){
+
+        console.log(y);
+        console.log(questionArray[y]);
+        
+        var display = document.createElement('div');
+        display.id = "question";
+        display.innerHTML = questionArray[y].text + "<br>";
+        
+        for(var x = 0; x < questionArray[y].answers.length; x++){
+
+            console.log("made it into the inner loop");
+            var label = document.createElement('label');
+            var input = document.createElement('input');
+            input.type = "radio";
+            input.id = "input";
+            input.className = "radio";
+
+            label.innerHTML = "&nbsp;"+questionArray[y].answers[x]+"<br>";
+            
+            document.getElementById("question").appendChild(input);
+            document.getElementById("question").appendChild(label);
+        
+        }
+        var button = document.createElement('button');
+        button.innerHTML = "Next Question";
+        button.addEventListener('click', nextQuestion(y));
+        document.getElementById("question").appendChild(button);
+
+        
+        }
 }
 
 function removeButton() {
@@ -118,8 +122,8 @@ function removeButton() {
 function nextQuestion() {
     //check what question we are on
 
-    //add the previous button if we are not on the first question
     //check that their answer is correct
+    checkAnswer();
     //display the next question
     console.log("This is interesting");
 }
@@ -127,12 +131,12 @@ function nextQuestion() {
 function checkAnswer() {
     //if answer is correct alert Good Job with an ok button
     //if answer is incorrect alert Try Again with an ok button
-
+/*
     if(document.getElementById("q1").value == "A"){
         document.getElementById("message1").innerHTML = "That is correct!";
     }
     else{
         document.getElementById("message1").innerHTML = "Incorrect! Try again.";
     }
-
+*/
 }
