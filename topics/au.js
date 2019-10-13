@@ -79,12 +79,7 @@ function buildQuiz() {
 }
 function displayQuestions(questionArray, currQ) {
 
-
-
     for (var y = 0; y < questionArray.length; y++) {
-
-        console.log(y);
-        console.log(questionArray[y]);
 
 
         if (currQ == 0) {
@@ -92,20 +87,20 @@ function displayQuestions(questionArray, currQ) {
             display.id = "question" + y;
             display.innerHTML = questionArray[y].getText() + "<br>";
             document.body.appendChild(display);
-            console.log(y);
+
         }
         else {
             var display = document.createElement('div');
             display.id = "question" + y;
             display.innerHTML = questionArray[y].getText() + "<br>";
             document.body.appendChild(display);
-            display.style.display = "none";
-            console.log(y);
+            //display.style.display = "none";
+
         }
 
         for (var x = 0; x < questionArray[y].answers.length; x++) {
             if (currQ == 0) {
-                console.log("made it into the inner loop");
+
                 var label = document.createElement('label');
                 var input = document.createElement('input');
                 input.type = "radio";
@@ -121,7 +116,7 @@ function displayQuestions(questionArray, currQ) {
                 document.body.appendChild(label);
             }
             else {
-                console.log("made it into the inner loop");
+
                 var label = document.createElement('label');
                 var input = document.createElement('input');
                 input.type = "radio";
@@ -131,36 +126,40 @@ function displayQuestions(questionArray, currQ) {
                 label.innerHTML = "&nbsp;" + questionArray[y].answers[x] + "<br>";
 
                 for (var z = 0; z < 5; z++) {
-                    console.log("in the create element loop. Hope this works!");
+
                     var display = document.createElement('div');
                     display.id = "answer" + x;
                 }
 
                 document.body.appendChild(input);
                 document.body.appendChild(label);
-                label.style.display = "none";
-                input.style.display = "none";
+                //label.style.display = "none";
+                //input.style.display = "none";
 
             }
         }
-        if (currQ == 0) {
+        /*if (currQ == 0) {
             var button = document.createElement('button');
             button.innerHTML = "Next Question";
             button.id = "btn" + y;
-            button.addEventListener('click', nextQuestion(y));
+            button.addEventListener('click', function () { nextQuestion(y - 4); }, false);
             document.body.appendChild(button);
         }
         else {
             var button = document.createElement('button');
             button.innerHTML = "Next Question";
             button.id = "btn" + y;
-            button.addEventListener('click', nextQuestion(y));
+            button.addEventListener('click', function () { nextQuestion(y - 4); }, false);
             document.body.appendChild(button);
             button.style.display = "none";
-        }
+        }*/
         currQ++;
     }
-
+    var button = document.createElement('button');
+    button.innerHTML = "Submit";
+    button.id = "submit";
+    button.addEventListener('click', function () { checkAnswer(); });
+    document.body.appendChild(button);
 }
 
 function removeButton() {
@@ -168,47 +167,115 @@ function removeButton() {
     button.parentNode.removeChild(button);
 }
 
-function nextQuestion(y) {
-    //check what question we are on
-    y -= 3;
-    id = "btn" + y;
-    console.log(id);
-    //document.getElementById('btn' + y).style.display = "block";
+/*function nextQuestion(y) {
+
+    //d
+
+
     //check that their answer is correct
     checkAnswer();
     //display the next question
+    id = "question" + y;
+    
     switch (y) {
+        case 1:
+            //remove the previous question
+            document.getElementById("question0").style.display = "none";
+            document.getElementById("input0").style.display = "none";
+            document.getElementById("input1").style.display = "none";
+           // document.getElementById("input2").style.display = "none";
+           // document.getElementById("input3").style.display = "none";
+            //remove the previous button
+            document.getElementById('btn1').style.display = "none";
+
+            //display the next question and button
+            document.getElementById(id).style.display = "block";
+            document.getElementById("input0").style.display = "block";
+            document.getElementById("input1").style.display = "block";
+            document.getElementById("input2").style.display = "block";
+            document.getElementById("input3").style.display = "block";
+
+            document.getElementById('btn1').style.display = "block";
+            //subtract from y
+            y--;
+            break;
+        case 2:
+            //remove the previous question
+            document.getElementById("question1").style.display = "none";
+            document.getElementById("input0").style.display = "none";
+            document.getElementById("input1").style.display = "none";
+            document.getElementById("input2").style.display = "none";
+            document.getElementById("input3").style.display = "none";
+            //remove the previous button
+            document.getElementById('btn1').style.display = "none";
+            //display the next question and button
+            document.getElementById(id).style.display = "block";
+            document.getElementById("input0").style.display = "block";
+            document.getElementById("input1").style.display = "block";
+            document.getElementById("input2").style.display = "block";
+            document.getElementById("input3").style.display = "block";
+
+            document.getElementById('btn2').style.display = "block";
+            //subtract from y
+            y--;
+            break;
+        case 3:
+            //remove the previous question
+            document.getElementById("question2").style.display = "none";
+            document.getElementById("input0").style.display = "none";
+            document.getElementById("input1").style.display = "none";
+            document.getElementById("input2").style.display = "none";
+            document.getElementById("input3").style.display = "none";
+            //remove the previous button
+            document.getElementById('btn1').style.display = "none";
+            //display the next question and button
+            document.getElementById(id).style.display = "block";
+            document.getElementById("input0").style.display = "block";
+            document.getElementById("input1").style.display = "block";
+
+            document.getElementById('btn2').style.display = "block";
+            //subtract from y
+            y--;
+            break;
         case 4:
-            // code block
+            //remove the previous question
+            document.getElementById("question3").style.display = "none";
+            document.getElementById("input0").style.display = "none";
+            document.getElementById("input1").style.display = "none";
+            document.getElementById("input2").style.display = "none";
+            document.getElementById("input3").style.display = "none";
+            //remove the previous button
+            document.getElementById('btn1').style.display = "none";
+            //display the next question and button
+            document.getElementById(id).style.display = "block";
+            document.getElementById("input0").style.display = "block";
+            document.getElementById("input1").style.display = "block";
+            document.getElementById("input2").style.display = "block";
+            document.getElementById("input3").style.display = "block";
+
+            document.getElementById('btn2').style.display = "block";
+            //subtract from y
+            y--;
             break;
-        case 5:
-            // code block
-            document.getElementById('button').style.display = "block";
-            break;
-        case 6:
-            // code block
-            break;
-        case 7:
-            // code block
-            break;
-        case 8:
-            // code block
-            break;
+
         default:
         // code block
     }
 
-}
 
+}
+*/
 function checkAnswer() {
     //if answer is correct alert Good Job with an ok button
     //if answer is incorrect alert Try Again with an ok button
-    /*
-        if(document.getElementById("q1").value == "A"){
+
+    /*document.body.appendChild = message;
+
+        if(document.getElementById("").value == "A"){
             document.getElementById("message1").innerHTML = "That is correct!";
         }
         else{
             document.getElementById("message1").innerHTML = "Incorrect! Try again.";
         }
-    */
+*/
 }
