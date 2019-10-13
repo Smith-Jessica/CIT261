@@ -63,16 +63,16 @@ function buildQuiz(){
         var obj4 = Object.assign(new Question, q4);
         var obj5 = Object.assign(new Question, q5);
 
-        console.log(obj5);
 
         var objArray = [obj1, obj2, obj3, obj4, obj5];
         var currQ = 0;
 
+        //removeButton();
         displayQuestions(objArray, currQ);
-        removeButton();
+        
 
       } else {
-        display.innerHTML = "Loading...";
+       // display.innerHTML = "Loading...";
       };
     }
 
@@ -88,7 +88,9 @@ function displayQuestions(questionArray, currQ) {
         
         var display = document.createElement('div');
         display.id = "question";
-        display.innerHTML = questionArray[y].text + "<br>";
+        display.innerHTML = questionArray[y].getText() + "<br>";
+        document.body.appendChild(display);
+        
         
         for(var x = 0; x < questionArray[y].answers.length; x++){
 
@@ -100,15 +102,20 @@ function displayQuestions(questionArray, currQ) {
             input.className = "radio";
 
             label.innerHTML = "&nbsp;"+questionArray[y].answers[x]+"<br>";
-            
-            document.getElementById("question").appendChild(input);
-            document.getElementById("question").appendChild(label);
-        
+           
+            for(var z = 0; z < 5; z++){
+                console.log("in the create element loop. Hope this works!");
+                var display = document.createElement('div');
+                display.id = "answer";
+            }
+
+            document.body.appendChild(input);
+            document.body.appendChild(label);
         }
         var button = document.createElement('button');
         button.innerHTML = "Next Question";
         button.addEventListener('click', nextQuestion(y));
-        document.getElementById("question").appendChild(button);
+        document.body.appendChild(button);
 
         
         }
