@@ -89,16 +89,18 @@ function displayQuestions(questionArray, currQ) {
 
         if (currQ == 0) {
             var display = document.createElement('div');
-            display.id = "question";
+            display.id = "question" + y;
             display.innerHTML = questionArray[y].getText() + "<br>";
             document.body.appendChild(display);
+            console.log(y);
         }
         else {
             var display = document.createElement('div');
-            display.id = "question";
+            display.id = "question" + y;
             display.innerHTML = questionArray[y].getText() + "<br>";
             document.body.appendChild(display);
             display.style.display = "none";
+            console.log(y);
         }
 
         for (var x = 0; x < questionArray[y].answers.length; x++) {
@@ -107,16 +109,13 @@ function displayQuestions(questionArray, currQ) {
                 var label = document.createElement('label');
                 var input = document.createElement('input');
                 input.type = "radio";
-                input.id = "input";
+                input.id = "input" + x;
                 input.className = "radio";
 
                 label.innerHTML = "&nbsp;" + questionArray[y].answers[x] + "<br>";
 
-                for (var z = 0; z < 5; z++) {
-                    console.log("in the create element loop. Hope this works!");
-                    var display = document.createElement('div');
-                    display.id = "answer";
-                }
+                var display = document.createElement('div');
+                display.id = "answer" + x;
 
                 document.body.appendChild(input);
                 document.body.appendChild(label);
@@ -126,7 +125,7 @@ function displayQuestions(questionArray, currQ) {
                 var label = document.createElement('label');
                 var input = document.createElement('input');
                 input.type = "radio";
-                input.id = "input";
+                input.id = "input" + x;
                 input.className = "radio";
 
                 label.innerHTML = "&nbsp;" + questionArray[y].answers[x] + "<br>";
@@ -134,7 +133,7 @@ function displayQuestions(questionArray, currQ) {
                 for (var z = 0; z < 5; z++) {
                     console.log("in the create element loop. Hope this works!");
                     var display = document.createElement('div');
-                    display.id = "answer";
+                    display.id = "answer" + x;
                 }
 
                 document.body.appendChild(input);
@@ -144,15 +143,17 @@ function displayQuestions(questionArray, currQ) {
 
             }
         }
-        if(currQ == 0){
+        if (currQ == 0) {
             var button = document.createElement('button');
             button.innerHTML = "Next Question";
+            button.id = "btn" + y;
             button.addEventListener('click', nextQuestion(y));
             document.body.appendChild(button);
         }
         else {
             var button = document.createElement('button');
             button.innerHTML = "Next Question";
+            button.id = "btn" + y;
             button.addEventListener('click', nextQuestion(y));
             document.body.appendChild(button);
             button.style.display = "none";
@@ -167,13 +168,36 @@ function removeButton() {
     button.parentNode.removeChild(button);
 }
 
-function nextQuestion() {
+function nextQuestion(y) {
     //check what question we are on
-
+    y -= 3;
+    id = "btn" + y;
+    console.log(id);
+    //document.getElementById('btn' + y).style.display = "block";
     //check that their answer is correct
     checkAnswer();
     //display the next question
-    console.log("This is interesting");
+    switch (y) {
+        case 4:
+            // code block
+            break;
+        case 5:
+            // code block
+            document.getElementById('button').style.display = "block";
+            break;
+        case 6:
+            // code block
+            break;
+        case 7:
+            // code block
+            break;
+        case 8:
+            // code block
+            break;
+        default:
+        // code block
+    }
+
 }
 
 function checkAnswer() {
