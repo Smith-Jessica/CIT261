@@ -303,16 +303,16 @@ td {
         }
 
         #ashton {
-            animation: cartwheel 3s infinite linear;
+            animation: cartwheel 2s infinite linear;
             -webkit-animation-name: cartwheel;
             animation-name: cartwheel;
         }
         @keyframes cartwheel {
             0% {transform: rotate(0deg);}
-            25% {transform: rotate(180deg);}
-            50% {transform: rotate(180deg);}
-            75% {transform: rotate(180deg);}
-            100% {transform: rotate(180deg);}
+            25% {transform: rotate(180deg), translateX(15px);}
+            50% {transform: rotate(180deg), translateX(15px);}
+            75% {transform: rotate(180deg), translateX(15px);}
+            100% {transform: rotate(180deg), translateX(15px);}
         }
     }
 }
