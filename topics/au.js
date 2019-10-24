@@ -279,3 +279,9 @@ function checkAnswer() {
         }
 */
 }
+
+function triggerCartwheel() {
+    //onload start the cartwheel
+    //run 6 times and then stop
+    //maybe add an option to click on him to stop him where he is??
+}
