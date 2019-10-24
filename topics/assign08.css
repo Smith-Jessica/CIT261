@@ -303,12 +303,12 @@ td {
         }
 
         #ashton {
-            animation: cartwheel 3s infinite ease-in-out;
-            -webkit-animation-name: cartwheel;
-            animation-name: cartwheel;
+            animation: race 3s infinite ease-in-out;
+            -webkit-animation-name: race;
+            animation-name: race;
             animation-fill-mode: forwards;
         }
-        @keyframes cartwheel {
+        @keyframes race {
             0% {transform: translate(10px)}
             25% {transform: translate(30px)}
             50% {transform: translate(50px)}
