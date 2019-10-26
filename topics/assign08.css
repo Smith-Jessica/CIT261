@@ -301,12 +301,16 @@ td {
             grid-column: 1/ span 2;
             font-size: 8vw;
         }
-
-        #ashton {
-            animation: race 3s infinite ease-in-out;
+        #racebtn {
+            width: 3vw;
+            grid-column: 1/ span 2;
+        }
+        #ashton.clicked{
+            animation: race 3s ease-in-out;
+            
             -webkit-animation-name: race;
             animation-name: race;
-            animation-fill-mode: forwards;
+           
         }
         @keyframes race {
             0% {transform: translate(10px)}
@@ -314,5 +318,6 @@ td {
             50% {transform: translate(50px)}
             100% {transform: translate(5000px)}
         }
+        
     }
 }
