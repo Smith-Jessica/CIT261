@@ -19,16 +19,29 @@ function topFunction() {
 */
 class Question {
 
-    constructor(text, answers, score) {
-        this.text = text;
-        this.answers = answers;
-        this.score = score;
+    constructor(question, correct_answer, incorrect_answers) {
+        this.question = question;
+        this.correct_answer = correct_answer;
+        this.score = 5;
+        this.incorrect_answers = incorrect_answers;
     }
     getText() {
-        return this.text;
+        return this.question;
     }
     getAnswers() {
-        return this.answers;
+        let choices = new Array();
+
+        for(let i = 0; i < 4; i++){
+            if(i == 3) {
+                choices[i] = this.correct_answer;
+            }
+            else {
+                choices[i] = this.incorrect_answers[i];
+            }
+            
+        }
+        
+        return choices;
     }
     getScore() {
         return this.score;
@@ -43,128 +56,98 @@ function buildQuiz() {
 
     var display = document.getElementById("quiz");
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "questions.json");
+    xmlhttp.open("GET", "https://opentdb.com/api.php?amount=10&type=multiple");
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             // var question = new Question();
-            var obj = JSON.parse(this.responseText);
+            var obj = JSON.parse(this.responseText);//this will return 10 questions in JSON format
 
-            var q1 = obj.q1;
-            var q2 = obj.q2;
-            var q3 = obj.q3;
-            var q4 = obj.q4;
-            var q5 = obj.q5;
+            if (obj.response_code == 0) {
+                var q1 = Object.assign(new Question(obj.results[0].question, obj.results[0].correct_answer, obj.results[0].incorrect_answers), obj.results[0]);
+                var q2 = Object.assign(new Question(obj.results[1].question, obj.results[1].correct_answer, obj.results[1].incorrect_answers), obj.results[1]);
+                var q3 = Object.assign(new Question(obj.results[2].question, obj.results[2].correct_answer, obj.results[2].incorrect_answers), obj.results[2]);
+                var q4 = Object.assign(new Question(obj.results[3].question, obj.results[3].correct_answer, obj.results[3].incorrect_answers), obj.results[3]);
+                var q5 = Object.assign(new Question(obj.results[4].question, obj.results[4].correct_answer, obj.results[4].incorrect_answers), obj.results[4]);
+                var q6 = Object.assign(new Question(obj.results[5].question, obj.results[5].correct_answer, obj.results[5].incorrect_answers), obj.results[5]);
+                var q7 = Object.assign(new Question(obj.results[6].question, obj.results[6].correct_answer, obj.results[6].incorrect_answers), obj.results[6]);
+                var q8 = Object.assign(new Question(obj.results[7].question, obj.results[7].correct_answer, obj.results[7].incorrect_answers), obj.results[7]);
+                var q9 = Object.assign(new Question(obj.results[8].question, obj.results[8].correct_answer, obj.results[8].incorrect_answers), obj.results[8]);
+                var q10 = Object.assign(new Question(obj.results[9].question, obj.results[9].correct_answer, obj.results[9].incorrect_answers), obj.results[9]);
 
-            var obj1 = Object.assign(new Question, q1);
-            var obj2 = Object.assign(new Question, q2);
-            var obj3 = Object.assign(new Question, q3);
-            var obj4 = Object.assign(new Question, q4);
-            var obj5 = Object.assign(new Question, q5);
+                var quiz = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
+                var currQ = 0;
 
-
-            var objArray = [obj1, obj2, obj3, obj4, obj5];
-            var currQ = 0;
-
-            removeButton();
-            displayQuestions(objArray, currQ);
-
+                removeButton();
+                //console.log(quiz[0]);
+                displayQuestions(quiz, currQ);
+                
+                
+            }
+            else {
+                console.log("Error fetching quiz questions");
+            }
 
         } else {
-            // display.innerHTML = "Loading...";
+            // display.innerHTML = "Loading..."; maybe put an animation here?
         };
     }
 
 }
-function displayQuestions(questionArray, currQ) {
+function displayQuestions(quiz, currQ) {
 
-    for (var y = 0; y < questionArray.length; y++) {
+    for (var y = 0; y < quiz.length; y++) {
 
-
-        if (currQ == 0) {
-            var display = document.createElement('div');
-            display.id = "question" + y;
-            display.innerHTML = questionArray[y].getText() + "<br>";
-            document.body.appendChild(display);
-
-        }
-        else {
-            var display = document.createElement('div');
-            display.id = "question" + y;
-            display.innerHTML = questionArray[y].getText() + "<br>";
-            document.body.appendChild(display);
-            //display.style.display = "none";
-
-        }
-
-        for (var x = 0; x < questionArray[y].answers.length; x++) {
-            if (currQ == 0) {
-
-                var label = document.createElement('label');
-                var input = document.createElement('input');
-                input.type = "radio";
-                input.id = "input" + x;
-                input.className = "radio";
-
-                label.innerHTML = "&nbsp;" + questionArray[y].answers[x] + "<br>";
-
+            var displayQ = document.createElement('div');
+            displayQ.id = "question" + y;
+            
+            
+            let choices = quiz[y].getAnswers();           
+           
+            displayQ.innerHTML = quiz[y].getText();
+            document.body.appendChild(displayQ);
+            
+            for(let i = 0; i < choices.length; i++){
+                
                 var display = document.createElement('div');
-                display.id = "answer" + x;
-
-                document.body.appendChild(input);
-                document.body.appendChild(label);
-            }
-            else {
-
+                display.id = "answer" + i;
                 var label = document.createElement('label');
                 var input = document.createElement('input');
+                
+                
+                label.innerHTML = "&nbsp;" + choices[i];
+
                 input.type = "radio";
-                input.id = "input" + x;
+                input.id = "input" + i;
                 input.className = "radio";
 
-                label.innerHTML = "&nbsp;" + questionArray[y].answers[x] + "<br>";
-
-                for (var z = 0; z < 5; z++) {
-
-                    var display = document.createElement('div');
-                    display.id = "answer" + x;
-                }
-
-                document.body.appendChild(input);
-                document.body.appendChild(label);
-                //label.style.display = "none";
-                //input.style.display = "none";
-
-            }
+                display.appendChild(input);
+                display.appendChild(label);
+                
+    
+                document.body.appendChild(display);
+                
+                currQ++;
+          
         }
-        /*if (currQ == 0) {
-            var button = document.createElement('button');
-            button.innerHTML = "Next Question";
-            button.id = "btn" + y;
-            button.addEventListener('click', function () { nextQuestion(y - 4); }, false);
-            document.body.appendChild(button);
-        }
-        else {
-            var button = document.createElement('button');
-            button.innerHTML = "Next Question";
-            button.id = "btn" + y;
-            button.addEventListener('click', function () { nextQuestion(y - 4); }, false);
-            document.body.appendChild(button);
-            button.style.display = "none";
-        }*/
-        currQ++;
+
     }
     var button = document.createElement('button');
     button.innerHTML = "Submit";
     button.id = "submit";
-    button.addEventListener('click', function () { checkAnswer(); });
+    button.addEventListener('click', function () { checkAnswer(quiz); });
     document.body.appendChild(button);
 }
 
 function removeButton() {
     var button = document.getElementById("takeQuiz");
     button.parentNode.removeChild(button);
+}
+function checkAnswer(quiz) {
+    //get user input
+    //check against correct answer for each Q
+    
 }
 
 /*function nextQuestion(y) {
@@ -265,26 +248,11 @@ function removeButton() {
 
 }
 */
-function checkAnswer() {
-    //if answer is correct alert Good Job with an ok button
-    //if answer is incorrect alert Try Again with an ok button
 
-    /*document.body.appendChild = message;
-
-        if(document.getElementById("").value == "A"){
-            document.getElementById("message1").innerHTML = "That is correct!";
-        }
-        else{
-            document.getElementById("message1").innerHTML = "Incorrect! Try again.";
-        }
-*/
-}
-
-//var theButton = document.getElementById("b");
-//theButton.onclick = go;
 
 function go() {
-	ashton.classList.add("clicked");
-    setTimeout(function(){
-    ashton.classList.remove("clicked");}, 2500); 
+    ashton.classList.add("clicked");
+    setTimeout(function () {
+        ashton.classList.remove("clicked");
+    }, 2500);
 }
