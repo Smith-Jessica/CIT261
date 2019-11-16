@@ -31,20 +31,23 @@ class Question {
     getAnswers() {
         let choices = new Array();
 
-        for(let i = 0; i < 4; i++){
-            if(i == 3) {
+        for (let i = 0; i < 4; i++) {
+            if (i == 3) {
                 choices[i] = this.correct_answer;
             }
             else {
                 choices[i] = this.incorrect_answers[i];
             }
-            
+
         }
-        
+
         return choices;
     }
     getScore() {
         return this.score;
+    }
+    getCorrectAnswer() {
+        return this.correct_answer;
     }
 
 }
@@ -79,11 +82,11 @@ function buildQuiz() {
                 var quiz = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
                 var currQ = 0;
 
+                //remove the 'Take Quiz' Button
                 removeButton();
-                //console.log(quiz[0]);
-                displayQuestions(quiz, currQ);
-                
-                
+                //display the quiz                              
+                nextQuestion(quiz, currQ);
+
             }
             else {
                 console.log("Error fetching quiz questions");
@@ -95,159 +98,167 @@ function buildQuiz() {
     }
 
 }
-function displayQuestions(quiz, currQ) {
 
-    for (var y = 0; y < quiz.length; y++) {
+function displayQuestions(quiz, y) {
 
-            var displayQ = document.createElement('div');
-            displayQ.id = "question" + y;
-            
-            
-            let choices = quiz[y].getAnswers();           
-           
-            displayQ.innerHTML = quiz[y].getText();
-            document.body.appendChild(displayQ);
-            
-            for(let i = 0; i < choices.length; i++){
-                
-                var display = document.createElement('div');
-                display.id = "answer" + i;
-                var label = document.createElement('label');
-                var input = document.createElement('input');
-                
-                
-                label.innerHTML = "&nbsp;" + choices[i];
+    //create a new div element
+    var displayQ = document.createElement('div');
+    displayQ.id = "question" + y;
 
-                input.type = "radio";
-                input.id = "input" + i;
-                input.className = "radio";
+    var t = document.createTextNode(quiz[y].getText());
 
-                display.appendChild(input);
-                display.appendChild(label);
-                
-    
-                document.body.appendChild(display);
-                
-                currQ++;
-          
-        }
+    displayQ.appendChild(t);
+    document.body.appendChild(displayQ);
+
+
+    //extract the array with answer choices
+    let choices = quiz[y].getAnswers();
+
+    for (let i = 0; i < choices.length; i++) {
+
+        //create the answer div, input, and label elements
+        var display = document.createElement('div');
+        display.id = "answer" + i;
+        var label = document.createElement('label');
+        var input = document.createElement('input');
+
+        //add text to label
+        label.innerHTML = "&nbsp;" + choices[i];
+
+        //configure the input type and id
+        input.type = "radio";
+        input.name = "answer";
+        input.id = "input" + i;
+        input.className = "radio";
+        input.value = choices[i];
+
+        //append the input and label to the answer div and then the answer div to the question div
+        display.appendChild(input);
+        display.appendChild(label);
+        displayQ.appendChild(display);
 
     }
-    var button = document.createElement('button');
-    button.innerHTML = "Submit";
-    button.id = "submit";
-    button.addEventListener('click', function () { checkAnswer(quiz); });
-    document.body.appendChild(button);
+
 }
 
 function removeButton() {
     var button = document.getElementById("takeQuiz");
     button.parentNode.removeChild(button);
 }
-function checkAnswer(quiz) {
+function checkAnswer(quiz, y) {
     //get user input
-    //check against correct answer for each Q
-    
+    var radios = document.getElementsByName("answer");
+    let key = quiz[y].getCorrectAnswer();
+
+    for (var i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+            // do whatever you want with the checked radio
+            let input = radios[i].value;
+            //check against correct answer for each Q
+            if (input == key) {
+                console.log(input);
+                console.log(key);
+                console.log("That is correct!");
+            }
+            else {
+                console.log(input);
+                console.log(key);
+                console.log("That is wrong.");
+            }
+            // only one radio can be logically checked, don't check the rest
+            break;
+        }
+    }
+
 }
 
-/*function nextQuestion(y) {
+function nextQuestion(quiz, y) {
 
-    //d
-
-
-    //check that their answer is correct
-    checkAnswer();
-    //display the next question
-    id = "question" + y;
-    
     switch (y) {
+
+        case 0:
+            //display the question and button
+            let q = document.getElementById("question0");
+            if (q == null) {
+                //display the question
+                displayQuestions(quiz, y);
+                //display the buttons
+                let btn = document.createElement('button');
+                btn.id = "btn1";
+                btn.innerText = "Next";
+                btn.className = "btnPlace";
+                btn.onclick = function () { nextQuestion(quiz, ++y); }
+
+
+                var button = document.createElement('button');
+                button.innerHTML = "Submit";
+                button.id = "submit";
+                button.className = "btnPlace";
+                button.addEventListener('click', function () { checkAnswer(quiz, y); });
+                document.body.appendChild(button);
+                document.body.appendChild(btn);
+            }
+            else if (q.length > 0) {
+                console.log("we found a prev question");
+                console.log(q);
+
+                displayQuestions(quiz, ++y);
+            }
+
+            break;
         case 1:
             //remove the previous question
-            document.getElementById("question0").style.display = "none";
-            document.getElementById("input0").style.display = "none";
-            document.getElementById("input1").style.display = "none";
-           // document.getElementById("input2").style.display = "none";
-           // document.getElementById("input3").style.display = "none";
-            //remove the previous button
-            document.getElementById('btn1').style.display = "none";
+            console.log("This is when y = 1 in nextQuestions()");
+            let z = document.getElementById("question0");
 
-            //display the next question and button
-            document.getElementById(id).style.display = "block";
-            document.getElementById("input0").style.display = "block";
-            document.getElementById("input1").style.display = "block";
-            document.getElementById("input2").style.display = "block";
-            document.getElementById("input3").style.display = "block";
+            while (z.hasChildNodes()) {
+                console.log("This means that the element with the id question0 has childNodes");
+                z.removeChild(z.firstChild);
+            }
+            z.remove();
 
-            document.getElementById('btn1').style.display = "block";
-            //subtract from y
-            y--;
+            //display the next question
+            displayQuestions(quiz, y);
+
             break;
-        case 2:
+        case 9:
             //remove the previous question
-            document.getElementById("question1").style.display = "none";
-            document.getElementById("input0").style.display = "none";
-            document.getElementById("input1").style.display = "none";
-            document.getElementById("input2").style.display = "none";
-            document.getElementById("input3").style.display = "none";
-            //remove the previous button
-            document.getElementById('btn1').style.display = "none";
-            //display the next question and button
-            document.getElementById(id).style.display = "block";
-            document.getElementById("input0").style.display = "block";
-            document.getElementById("input1").style.display = "block";
-            document.getElementById("input2").style.display = "block";
-            document.getElementById("input3").style.display = "block";
+            let a = document.getElementById("question8");
 
-            document.getElementById('btn2').style.display = "block";
-            //subtract from y
-            y--;
+            while (a.hasChildNodes()) {
+                // console.log("This means that the element with the id question0 has childNodes");
+                a.removeChild(a.firstChild);
+            }
+            a.remove();
+
+            //remove the 'next' btn
+            let btn = document.getElementById("btn1");
+            btn.remove();
+            //display the next question
+            displayQuestions(quiz, y);
+
             break;
-        case 3:
-            //remove the previous question
-            document.getElementById("question2").style.display = "none";
-            document.getElementById("input0").style.display = "none";
-            document.getElementById("input1").style.display = "none";
-            document.getElementById("input2").style.display = "none";
-            document.getElementById("input3").style.display = "none";
-            //remove the previous button
-            document.getElementById('btn1').style.display = "none";
-            //display the next question and button
-            document.getElementById(id).style.display = "block";
-            document.getElementById("input0").style.display = "block";
-            document.getElementById("input1").style.display = "block";
-
-            document.getElementById('btn2').style.display = "block";
-            //subtract from y
-            y--;
-            break;
-        case 4:
-            //remove the previous question
-            document.getElementById("question3").style.display = "none";
-            document.getElementById("input0").style.display = "none";
-            document.getElementById("input1").style.display = "none";
-            document.getElementById("input2").style.display = "none";
-            document.getElementById("input3").style.display = "none";
-            //remove the previous button
-            document.getElementById('btn1').style.display = "none";
-            //display the next question and button
-            document.getElementById(id).style.display = "block";
-            document.getElementById("input0").style.display = "block";
-            document.getElementById("input1").style.display = "block";
-            document.getElementById("input2").style.display = "block";
-            document.getElementById("input3").style.display = "block";
-
-            document.getElementById('btn2').style.display = "block";
-            //subtract from y
-            y--;
-            break;
-
         default:
-        // code block
+            //remove the previous question
+            let c = y - 1;
+            let id = "question" + c;
+            let b = document.getElementById(id);
+
+            while (b.hasChildNodes()) {
+                // console.log("This means that the element with the id question0 has childNodes");
+                b.removeChild(b.firstChild);
+            }
+            b.remove();
+
+            //display the next question
+            displayQuestions(quiz, y);
+
+            break;
     }
 
 
 }
-*/
+
 
 
 function go() {

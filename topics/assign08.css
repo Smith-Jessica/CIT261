@@ -72,7 +72,7 @@ div.sources {
     font-size: calc(16px + 0.5vw);
 }
 
-button#myBtn {
+button#myBtn { /**/
     display: none;
     /* Hidden by default */
     position: fixed;
@@ -91,7 +91,34 @@ button#myBtn {
     font-size: 18px;
     cursor: pointer;
 }
-
+button { /**/
+ 
+    position: absolute;
+    z-index: 99;
+    /* Make sure it does not overlap */
+    border: none;
+    outline: none;
+    background-color: gray;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+button#btn1 {
+   left: 100px;
+    position: absolute;
+    z-index: 99;
+    /* Make sure it does not overlap */
+    border: none;
+    outline: none;
+    background-color: gray;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
 table {
     background-color: beige;
     border: 1px solid black;
