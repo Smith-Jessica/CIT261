@@ -105,7 +105,8 @@ function displayQuestions(quiz, y) {
     var displayQ = document.createElement('div');
     displayQ.id = "question" + y;
 
-    var t = document.createTextNode(quiz[y].getText());
+    var t = document.createElement('div');
+    t.innerHTML = quiz[y].getText();
 
     displayQ.appendChild(t);
     document.body.appendChild(displayQ);
@@ -149,25 +150,64 @@ function checkAnswer(quiz, y) {
     //get user input
     var radios = document.getElementsByName("answer");
     let key = quiz[y].getCorrectAnswer();
+    let count = 0;
 
     for (var i = 0, length = radios.length; i < length; i++) {
         if (radios[i].checked) {
-            // do whatever you want with the checked radio
+
             let input = radios[i].value;
             //check against correct answer for each Q
             if (input == key) {
-                console.log(input);
-                console.log(key);
-                console.log("That is correct!");
+                var message = document.getElementById("modal-text");
+                var modal = document.getElementById("myModal");
+                
+                message.innerHTML = "<h1>That is Correct!</h1>";
+                modal.style.display = "block";
+                
+
+                // When the user clicks on <span> (x), close the modal
+                var span = document.getElementsByClassName("close")[0];
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
             }
             else {
-                console.log(input);
-                console.log(key);
-                console.log("That is wrong.");
+                var message = document.getElementById("modal-text");
+                var modal = document.getElementById("myModal");
+
+                message.innerHTML = "<h1>That is Incorrect. Please Try Again</h1>";
+                modal.style.display = "block";
+                
+
+                // When the user clicks on <span> (x), close the modal
+                var span = document.getElementsByClassName("close")[0];
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
             }
             // only one radio can be logically checked, don't check the rest
             break;
         }
+        else {
+            count++;
+        }
+    }
+    if (count == radios.length) {
+        console.log("No choice was made");
     }
 
 }
@@ -187,7 +227,7 @@ function nextQuestion(quiz, y) {
                 btn.id = "btn1";
                 btn.innerText = "Next";
                 btn.className = "btnPlace";
-                btn.onclick = function () { nextQuestion(quiz, ++y); }
+                btn.onclick = function () { checkAnswer(quiz, y); nextQuestion(quiz, ++y); }
 
 
                 var button = document.createElement('button');
