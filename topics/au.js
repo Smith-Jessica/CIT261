@@ -84,7 +84,9 @@ function buildQuiz() {
 
                 //remove the 'Take Quiz' Button
                 removeButton();
-                //display the quiz                              
+                //display the quiz
+                console.log("This is just before calling nextQ in buildQuiz()");
+                console.log(quiz);                              
                 nextQuestion(quiz, currQ);
 
             }
@@ -100,7 +102,8 @@ function buildQuiz() {
 }
 
 function displayQuestions(quiz, y) {
-
+    console.log("This is quiz in displayQuestions");
+    console.log(quiz);
     //create a new div element
     var displayQ = document.createElement('div');
     displayQ.id = "question" + y;
@@ -109,7 +112,8 @@ function displayQuestions(quiz, y) {
     t.innerHTML = quiz[y].getText();
 
     displayQ.appendChild(t);
-    document.body.appendChild(displayQ);
+    var html = document.getElementById("quiz");
+    html.appendChild(displayQ);
 
 
     //extract the array with answer choices
@@ -159,8 +163,10 @@ function checkAnswer(quiz, y) {
             //check against correct answer for each Q
             if (input == key) {
                 var message = document.getElementById("modal-text");
+                //var content = document.getElementsByClassName("modal-content");
                 var modal = document.getElementById("myModal");
-                
+
+                //content.style.backgroundColor = "#7ef865";
                 message.innerHTML = "<h1>That is Correct!</h1>";
                 modal.style.display = "block";
                 
@@ -180,9 +186,11 @@ function checkAnswer(quiz, y) {
             }
             else {
                 var message = document.getElementById("modal-text");
+                //var content = document.getElementsByClassName("modal-content");
                 var modal = document.getElementById("myModal");
 
-                message.innerHTML = "<h1>That is Incorrect. Please Try Again</h1>";
+                //content.style.backgroundColor = "#f86585";
+                message.innerHTML = "<h1>That is Incorrect.</h1>";
                 modal.style.display = "block";
                 
 
@@ -213,15 +221,21 @@ function checkAnswer(quiz, y) {
 }
 
 function nextQuestion(quiz, y) {
-
+    console.log("This is quiz in nextQuestion before the switch case");
+    console.log(quiz);
     switch (y) {
 
         case 0:
             //display the question and button
+            console.log("This is quiz in case 0 of the switch case in nextQuestion");
+            console.log(quiz);
             let q = document.getElementById("question0");
             if (q == null) {
+                console.log("This is quiz when question0 is null(it's the first question to be displayed");
+                console.log(quiz);
                 //display the question
                 displayQuestions(quiz, y);
+
                 //display the buttons
                 let btn = document.createElement('button');
                 btn.id = "btn1";
@@ -235,8 +249,12 @@ function nextQuestion(quiz, y) {
                 button.id = "submit";
                 button.className = "btnPlace";
                 button.addEventListener('click', function () { checkAnswer(quiz, y); });
-                document.body.appendChild(button);
-                document.body.appendChild(btn);
+                let btnContainer = document.createElement('div');
+                btnContainer.id = "forBtns";
+                document.body.appendChild(btnContainer);
+                //var btnContainer = document.getElementById("forbuttons");
+                btnContainer.appendChild(button);
+                btnContainer.appendChild(btn);
             }
             else if (q.length > 0) {
                 console.log("we found a prev question");
