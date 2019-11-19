@@ -162,11 +162,17 @@ function checkAnswer(quiz, y) {
             let input = radios[i].value;
             //check against correct answer for each Q
             if (input == key) {
+
+                var pscore = localStorage.getItem("quiz_score");
+                var value = JSON.parse(pscore);
+                value = value + 5;
+                localStorage.quiz_score = value;
+                console.log(localStorage.getItem("quiz_score"));
+
                 var message = document.getElementById("modal-text");
-                //var content = document.getElementsByClassName("modal-content");
                 var modal = document.getElementById("myModal");
 
-                //content.style.backgroundColor = "#7ef865";
+                
                 message.innerHTML = "<h1>That is Correct!</h1>";
                 modal.style.display = "block";
                 
@@ -186,10 +192,10 @@ function checkAnswer(quiz, y) {
             }
             else {
                 var message = document.getElementById("modal-text");
-                //var content = document.getElementsByClassName("modal-content");
+                
                 var modal = document.getElementById("myModal");
 
-                //content.style.backgroundColor = "#f86585";
+                
                 message.innerHTML = "<h1>That is Incorrect.</h1>";
                 modal.style.display = "block";
                 
@@ -221,18 +227,19 @@ function checkAnswer(quiz, y) {
 }
 
 function nextQuestion(quiz, y) {
-    console.log("This is quiz in nextQuestion before the switch case");
-    console.log(quiz);
+   // console.log("This is quiz in nextQuestion before the switch case");
+    //console.log(quiz);
     switch (y) {
 
         case 0:
             //display the question and button
-            console.log("This is quiz in case 0 of the switch case in nextQuestion");
-            console.log(quiz);
+      //      console.log("This is quiz in case 0 of the switch case in nextQuestion");
+        //    console.log(quiz);
+            localStorage.setItem("quiz_score", 0);
             let q = document.getElementById("question0");
             if (q == null) {
-                console.log("This is quiz when question0 is null(it's the first question to be displayed");
-                console.log(quiz);
+          //      console.log("This is quiz when question0 is null(it's the first question to be displayed");
+            //    console.log(quiz);
                 //display the question
                 displayQuestions(quiz, y);
 
