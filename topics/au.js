@@ -83,7 +83,7 @@ function buildQuiz() {
                 var currQ = 0;
 
                 //remove the 'Take Quiz' Button
-                removeButton();
+                removeButton("takeQuiz");
                 //display the quiz
                 console.log("This is just before calling nextQ in buildQuiz()");
                 console.log(quiz);                              
@@ -146,8 +146,8 @@ function displayQuestions(quiz, y) {
 
 }
 
-function removeButton() {
-    var button = document.getElementById("takeQuiz");
+function removeButton(id) {
+    var button = document.getElementById(id);
     button.parentNode.removeChild(button);
 }
 function checkAnswer(quiz, y) {
