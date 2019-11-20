@@ -104,6 +104,7 @@ function buildQuiz() {
 function displayQuestions(quiz, y) {
     console.log("This is quiz in displayQuestions");
     console.log(quiz);
+    
     //create a new div element
     var displayQ = document.createElement('div');
     displayQ.id = "question" + y;
@@ -167,8 +168,10 @@ function checkAnswer(quiz, y) {
                 var value = JSON.parse(pscore);
                 value = value + 5;
                 localStorage.quiz_score = value;
-                console.log(localStorage.getItem("quiz_score"));
+                
 
+                displayGrade(true);
+/*
                 var message = document.getElementById("modal-text");
                 var modal = document.getElementById("myModal");
 
@@ -189,8 +192,12 @@ function checkAnswer(quiz, y) {
                         modal.style.display = "none";
                     }
                 }
+                */
             }
             else {
+                
+                displayGrade(false);
+                /*
                 var message = document.getElementById("modal-text");
                 
                 var modal = document.getElementById("myModal");
@@ -211,7 +218,7 @@ function checkAnswer(quiz, y) {
                     if (event.target == modal) {
                         modal.style.display = "none";
                     }
-                }
+                }*/
             }
             // only one radio can be logically checked, don't check the rest
             break;
@@ -229,6 +236,7 @@ function checkAnswer(quiz, y) {
 function nextQuestion(quiz, y) {
    // console.log("This is quiz in nextQuestion before the switch case");
     //console.log(quiz);
+    
     switch (y) {
 
         case 0:
@@ -251,16 +259,11 @@ function nextQuestion(quiz, y) {
                 btn.onclick = function () { checkAnswer(quiz, y); nextQuestion(quiz, ++y); }
 
 
-                var button = document.createElement('button');
-                button.innerHTML = "Submit";
-                button.id = "submit";
-                button.className = "btnPlace";
-                button.addEventListener('click', function () { checkAnswer(quiz, y); });
                 let btnContainer = document.createElement('div');
                 btnContainer.id = "forBtns";
                 document.body.appendChild(btnContainer);
-                //var btnContainer = document.getElementById("forbuttons");
-                btnContainer.appendChild(button);
+                
+                
                 btnContainer.appendChild(btn);
             }
             else if (q.length > 0) {
@@ -298,7 +301,16 @@ function nextQuestion(quiz, y) {
 
             //remove the 'next' btn
             let btn = document.getElementById("btn1");
-            btn.remove();
+            removeButton(btn.id);
+            
+            var button = document.createElement('button');
+            button.innerHTML = "Submit";
+            button.id = "submit";
+            button.className = "btnPlace";
+            button.addEventListener('click', function () { displayResult(); });
+            let btnContainer = document.getElementById("forBtns");
+
+            btnContainer.appendChild(button);
             //display the next question
             displayQuestions(quiz, y);
 
@@ -324,7 +336,22 @@ function nextQuestion(quiz, y) {
 
 }
 
+function displayResult() {
+    var pscore = localStorage.getItem("quiz_score");
+    console.log(pscore);
+}
 
+function removeBackground() {
+    document.body.style.backgroundColor = "#fefefe";
+}
+function displayGrade(correct) {
+    if(correct) {
+        document.body.style.backgroundColor = "green";
+    }
+    else {
+        document.body.style.backgroundColor = "red";
+    }
+}
 
 function go() {
     ashton.classList.add("clicked");
