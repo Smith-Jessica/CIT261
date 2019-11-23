@@ -194,7 +194,7 @@ function checkAnswer(quiz, y) {
                                 }
                                 */
             }
-            else {
+            else { 
 
                 displayGrade(false);
                 /*
@@ -320,13 +320,14 @@ function nextQuestion(quiz, y) {
             button.innerHTML = "Submit";
             button.id = "submit";
             button.className = "btnPlace";
-            button.addEventListener('click', function () { displayResult(); });
+            button.addEventListener('click', function () { removeElement(y); displayResult(); });
             let btnContainer = document.getElementById("forBtns");
 
             btnContainer.appendChild(button);
             //display the next question
+            //button.addEventListener("animationend", function () {
             displayQuestions(quiz, y);
-
+            //});
             break;
         default:
                 let c = y - 1;
@@ -367,11 +368,35 @@ function removeElement(currQ) {
 
 }
 function addElement(id){
+    //let div = document.getElementById(id);
     id.classList.add("add1");
 }
 function displayResult() {
+    let elem = document.getElementById("question9");
+    elem.addEventListener("animationend", function () {
+        //remove the previous question
+        let a = document.getElementById("question9");
+
+        while (a.hasChildNodes()) {
+            // console.log("This means that the element with the id question0 has childNodes");
+            a.removeChild(a.firstChild);
+        }
+        a.remove();
+
+        //remove the 'next' btn
+        let btn = document.getElementById("submit");
+        removeButton(btn.id);
+    });
     var pscore = localStorage.getItem("quiz_score");
-    console.log(pscore);
+    var div = document.createElement('div');
+    div.id = "results";
+    
+    var t = document.createElement('div');
+    t.innerHTML = "<h1>" + pscore + "</h1>";
+
+    div.appendChild(t);
+    document.body.appendChild(div);
+    addElement(div);
 }
 
 function removeBackground() {
