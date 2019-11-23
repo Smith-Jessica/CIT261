@@ -194,7 +194,7 @@ function checkAnswer(quiz, y) {
                                 }
                                 */
             }
-            else { 
+            else {
 
                 displayGrade(false);
                 /*
@@ -256,8 +256,9 @@ function nextQuestion(quiz, y) {
                 btn.id = "btn1";
                 btn.innerText = "Next";
                 btn.className = "btnPlace";
+                btn.title = "Next Question";
                 btn.onclick = function () { checkAnswer(quiz, y); removeElement(y); nextQuestion(quiz, ++y); }
-
+               // btn.addEventListener('mouseover', function () { displayHint1(); });
 
                 let btnContainer = document.createElement('div');
                 btnContainer.id = "forBtns";
@@ -275,7 +276,7 @@ function nextQuestion(quiz, y) {
 
             break;
         case 1:
-                let element = document.getElementById("question0");
+            let element = document.getElementById("question0");
             element.addEventListener("animationend", function () {
                 //remove the previous question
                 console.log("This is when y = 1 in nextQuestions()");
@@ -297,7 +298,7 @@ function nextQuestion(quiz, y) {
 
             break;
         case 9:
-                let elem = document.getElementById("question8");
+            let elem = document.getElementById("question8");
             elem.addEventListener("animationend", function () {
                 //remove the previous question
                 let a = document.getElementById("question8");
@@ -319,8 +320,10 @@ function nextQuestion(quiz, y) {
             var button = document.createElement('button');
             button.innerHTML = "Submit";
             button.id = "submit";
+            button.title = "Show your Score";
             button.className = "btnPlace";
             button.addEventListener('click', function () { removeElement(y); displayResult(); });
+            //button.addEventListener('mouseover', function () { displayHint2(); });
             let btnContainer = document.getElementById("forBtns");
 
             btnContainer.appendChild(button);
@@ -330,16 +333,16 @@ function nextQuestion(quiz, y) {
             //});
             break;
         default:
-                let c = y - 1;
-                let id = "question" + c;
-                let b = document.getElementById(id);
+            let c = y - 1;
+            let id = "question" + c;
+            let b = document.getElementById(id);
             //remove the previous question
             b.addEventListener("animationend", function (b) {
                 let d = document.getElementById(id);
                 while (d.hasChildNodes()) {
                     // console.log("This means that the element with the id question0 has childNodes");
                     d.removeChild(d.firstChild);
-                } 
+                }
                 d.remove();
 
                 console.log("the animation ended in default");
@@ -367,7 +370,7 @@ function removeElement(currQ) {
     console.log(id);
 
 }
-function addElement(id){
+function addElement(id) {
     //let div = document.getElementById(id);
     id.classList.add("add1");
 }
@@ -390,9 +393,9 @@ function displayResult() {
     var pscore = localStorage.getItem("quiz_score");
     var div = document.createElement('div');
     div.id = "results";
-    
+
     var t = document.createElement('div');
-    t.innerHTML = "<h1>" + pscore + "</h1>";
+    t.innerHTML = "<h1>Your Score is " + pscore + "</h1>";
 
     div.appendChild(t);
     document.body.appendChild(div);
@@ -417,3 +420,29 @@ function go() {
         ashton.classList.remove("clicked");
     }, 2500);
 }
+/*
+function displayHint1() {
+    let hint1 = document.getElementById("hint1");
+    hint1.title = "Next Question";
+   /* if (hint1.style.display == "none") {
+        
+        hint1.style.display = "block";
+    }
+    else {
+        hint1.style.display = "none";
+    }
+
+
+}
+function displayHint2() {
+    let hint2 = document.getElementById("hint2");
+
+
+    if (hint2.style.display == "none") {
+        hint2.style.display = "block";
+    }
+    else {
+        hint2.style.display = "none";
+    }
+}
+*/
