@@ -86,7 +86,7 @@ function buildQuiz() {
                 removeButton("takeQuiz");
                 //display the quiz
                 console.log("This is just before calling nextQ in buildQuiz()");
-                console.log(quiz);                              
+                console.log(quiz);
                 nextQuestion(quiz, currQ);
 
             }
@@ -104,11 +104,11 @@ function buildQuiz() {
 function displayQuestions(quiz, y) {
     console.log("This is quiz in displayQuestions");
     console.log(quiz);
-    
+
     //create a new div element
     var displayQ = document.createElement('div');
     displayQ.id = "question" + y;
-
+    addElement(displayQ);
     var t = document.createElement('div');
     t.innerHTML = quiz[y].getText();
 
@@ -168,34 +168,34 @@ function checkAnswer(quiz, y) {
                 var value = JSON.parse(pscore);
                 value = value + 5;
                 localStorage.quiz_score = value;
-                
+
 
                 displayGrade(true);
-/*
-                var message = document.getElementById("modal-text");
-                var modal = document.getElementById("myModal");
-
+                /*
+                                var message = document.getElementById("modal-text");
+                                var modal = document.getElementById("myModal");
                 
-                message.innerHTML = "<h1>That is Correct!</h1>";
-                modal.style.display = "block";
+                                
+                                message.innerHTML = "<h1>That is Correct!</h1>";
+                                modal.style.display = "block";
+                                
                 
-
-                // When the user clicks on <span> (x), close the modal
-                var span = document.getElementsByClassName("close")[0];
-                span.onclick = function () {
-                    modal.style.display = "none";
-                }
-
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
-                */
+                                // When the user clicks on <span> (x), close the modal
+                                var span = document.getElementsByClassName("close")[0];
+                                span.onclick = function () {
+                                    modal.style.display = "none";
+                                }
+                
+                                // When the user clicks anywhere outside of the modal, close it
+                                window.onclick = function (event) {
+                                    if (event.target == modal) {
+                                        modal.style.display = "none";
+                                    }
+                                }
+                                */
             }
             else {
-                
+
                 displayGrade(false);
                 /*
                 var message = document.getElementById("modal-text");
@@ -234,20 +234,20 @@ function checkAnswer(quiz, y) {
 }
 
 function nextQuestion(quiz, y) {
-   // console.log("This is quiz in nextQuestion before the switch case");
+    // console.log("This is quiz in nextQuestion before the switch case");
     //console.log(quiz);
-    
+
     switch (y) {
 
         case 0:
             //display the question and button
-      //      console.log("This is quiz in case 0 of the switch case in nextQuestion");
-        //    console.log(quiz);
+            //      console.log("This is quiz in case 0 of the switch case in nextQuestion");
+            //    console.log(quiz);
             localStorage.setItem("quiz_score", 0);
             let q = document.getElementById("question0");
             if (q == null) {
-          //      console.log("This is quiz when question0 is null(it's the first question to be displayed");
-            //    console.log(quiz);
+                //      console.log("This is quiz when question0 is null(it's the first question to be displayed");
+                //    console.log(quiz);
                 //display the question
                 displayQuestions(quiz, y);
 
@@ -256,14 +256,14 @@ function nextQuestion(quiz, y) {
                 btn.id = "btn1";
                 btn.innerText = "Next";
                 btn.className = "btnPlace";
-                btn.onclick = function () { checkAnswer(quiz, y); nextQuestion(quiz, ++y); }
+                btn.onclick = function () { checkAnswer(quiz, y); removeElement(y); nextQuestion(quiz, ++y); }
 
 
                 let btnContainer = document.createElement('div');
                 btnContainer.id = "forBtns";
                 document.body.appendChild(btnContainer);
-                
-                
+
+
                 btnContainer.appendChild(btn);
             }
             else if (q.length > 0) {
@@ -275,34 +275,47 @@ function nextQuestion(quiz, y) {
 
             break;
         case 1:
-            //remove the previous question
-            console.log("This is when y = 1 in nextQuestions()");
-            let z = document.getElementById("question0");
+                let element = document.getElementById("question0");
+            element.addEventListener("animationend", function () {
+                //remove the previous question
+                console.log("This is when y = 1 in nextQuestions()");
+                let z = document.getElementById("question0");
 
-            while (z.hasChildNodes()) {
-                console.log("This means that the element with the id question0 has childNodes");
-                z.removeChild(z.firstChild);
-            }
-            z.remove();
+                while (z.hasChildNodes()) {
+                    console.log("This means that the element with the id question0 has childNodes");
+                    z.removeChild(z.firstChild);
+                }
+                z.remove();
+
+
+                console.log("the animation ended in case 1");
+
+            });
 
             //display the next question
             displayQuestions(quiz, y);
 
             break;
         case 9:
-            //remove the previous question
-            let a = document.getElementById("question8");
+                let elem = document.getElementById("question8");
+            elem.addEventListener("animationend", function () {
+                //remove the previous question
+                let a = document.getElementById("question8");
 
-            while (a.hasChildNodes()) {
-                // console.log("This means that the element with the id question0 has childNodes");
-                a.removeChild(a.firstChild);
-            }
-            a.remove();
+                while (a.hasChildNodes()) {
+                    // console.log("This means that the element with the id question0 has childNodes");
+                    a.removeChild(a.firstChild);
+                }
+                a.remove();
 
-            //remove the 'next' btn
-            let btn = document.getElementById("btn1");
-            removeButton(btn.id);
-            
+                //remove the 'next' btn
+                let btn = document.getElementById("btn1");
+                removeButton(btn.id);
+
+                console.log("the animation ended in case 9");
+
+            });
+
             var button = document.createElement('button');
             button.innerHTML = "Submit";
             button.id = "submit";
@@ -316,16 +329,22 @@ function nextQuestion(quiz, y) {
 
             break;
         default:
+                let c = y - 1;
+                let id = "question" + c;
+                let b = document.getElementById(id);
             //remove the previous question
-            let c = y - 1;
-            let id = "question" + c;
-            let b = document.getElementById(id);
+            b.addEventListener("animationend", function (b) {
+                let d = document.getElementById(id);
+                while (d.hasChildNodes()) {
+                    // console.log("This means that the element with the id question0 has childNodes");
+                    d.removeChild(d.firstChild);
+                } 
+                d.remove();
 
-            while (b.hasChildNodes()) {
-                // console.log("This means that the element with the id question0 has childNodes");
-                b.removeChild(b.firstChild);
-            }
-            b.remove();
+                console.log("the animation ended in default");
+
+            });
+
 
             //display the next question
             displayQuestions(quiz, y);
@@ -336,6 +355,20 @@ function nextQuestion(quiz, y) {
 
 }
 
+function removeElement(currQ) {
+    var id = "question" + currQ;
+    var element = document.getElementById(id);
+    element.classList.add("remove1");
+    element.classList.remove("add1");
+    //element.addEventListener("animationend", function (id) { document.getElementById(id).remove(); console.log("the animation ended"); });
+    //element.remove();
+    console.log("RemoveElement got called for:");
+    console.log(id);
+
+}
+function addElement(id){
+    id.classList.add("add1");
+}
 function displayResult() {
     var pscore = localStorage.getItem("quiz_score");
     console.log(pscore);
@@ -345,7 +378,7 @@ function removeBackground() {
     document.body.style.backgroundColor = "#fefefe";
 }
 function displayGrade(correct) {
-    if(correct) {
+    if (correct) {
         document.body.style.backgroundColor = "green";
     }
     else {
