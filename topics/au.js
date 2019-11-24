@@ -85,13 +85,12 @@ function buildQuiz() {
                 //remove the 'Take Quiz' Button
                 removeButton("takeQuiz");
                 //display the quiz
-                console.log("This is just before calling nextQ in buildQuiz()");
-                console.log(quiz);
+               
                 nextQuestion(quiz, currQ);
 
             }
             else {
-                console.log("Error fetching quiz questions");
+               // console.log("Error fetching quiz questions");
             }
 
         } else {
@@ -102,8 +101,7 @@ function buildQuiz() {
 }
 
 function displayQuestions(quiz, y) {
-    console.log("This is quiz in displayQuestions");
-    console.log(quiz);
+    
 
     //create a new div element
     var displayQ = document.createElement('div');
@@ -171,56 +169,13 @@ function checkAnswer(quiz, y) {
 
 
                 displayGrade(true);
-                /*
-                                var message = document.getElementById("modal-text");
-                                var modal = document.getElementById("myModal");
-                
-                                
-                                message.innerHTML = "<h1>That is Correct!</h1>";
-                                modal.style.display = "block";
-                                
-                
-                                // When the user clicks on <span> (x), close the modal
-                                var span = document.getElementsByClassName("close")[0];
-                                span.onclick = function () {
-                                    modal.style.display = "none";
-                                }
-                
-                                // When the user clicks anywhere outside of the modal, close it
-                                window.onclick = function (event) {
-                                    if (event.target == modal) {
-                                        modal.style.display = "none";
-                                    }
-                                }
-                                */
+
             }
             else {
 
                 displayGrade(false);
-                /*
-                var message = document.getElementById("modal-text");
-                
-                var modal = document.getElementById("myModal");
 
-                
-                message.innerHTML = "<h1>That is Incorrect.</h1>";
-                modal.style.display = "block";
-                
-
-                // When the user clicks on <span> (x), close the modal
-                var span = document.getElementsByClassName("close")[0];
-                span.onclick = function () {
-                    modal.style.display = "none";
-                }
-
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }*/
             }
-            // only one radio can be logically checked, don't check the rest
             break;
         }
         else {
@@ -228,7 +183,7 @@ function checkAnswer(quiz, y) {
         }
     }
     if (count == radios.length) {
-        console.log("No choice was made");
+        //console.log("No choice was made");
     }
 
 }
@@ -257,8 +212,12 @@ function nextQuestion(quiz, y) {
                 btn.innerText = "Next";
                 btn.className = "btnPlace";
                 btn.title = "Next Question";
-                btn.onclick = function () { checkAnswer(quiz, y); removeElement(y); nextQuestion(quiz, ++y); }
-               // btn.addEventListener('mouseover', function () { displayHint1(); });
+                btn.onclick = function () {
+                    checkAnswer(quiz, y); setTimeout(function () {
+                        removeElement(y); nextQuestion(quiz, ++y);
+                    }, 1800);
+                }
+                // btn.addEventListener('mouseover', function () { displayHint1(); });
 
                 let btnContainer = document.createElement('div');
                 btnContainer.id = "forBtns";
@@ -268,8 +227,6 @@ function nextQuestion(quiz, y) {
                 btnContainer.appendChild(btn);
             }
             else if (q.length > 0) {
-                console.log("we found a prev question");
-                console.log(q);
 
                 displayQuestions(quiz, ++y);
             }
@@ -279,17 +236,14 @@ function nextQuestion(quiz, y) {
             let element = document.getElementById("question0");
             element.addEventListener("animationend", function () {
                 //remove the previous question
-                console.log("This is when y = 1 in nextQuestions()");
+
                 let z = document.getElementById("question0");
 
                 while (z.hasChildNodes()) {
-                    console.log("This means that the element with the id question0 has childNodes");
                     z.removeChild(z.firstChild);
                 }
                 z.remove();
 
-
-                console.log("the animation ended in case 1");
 
             });
 
@@ -313,7 +267,6 @@ function nextQuestion(quiz, y) {
                 let btn = document.getElementById("btn1");
                 removeButton(btn.id);
 
-                console.log("the animation ended in case 9");
 
             });
 
@@ -345,7 +298,6 @@ function nextQuestion(quiz, y) {
                 }
                 d.remove();
 
-                console.log("the animation ended in default");
 
             });
 
@@ -366,8 +318,10 @@ function removeElement(currQ) {
     element.classList.remove("add1");
     //element.addEventListener("animationend", function (id) { document.getElementById(id).remove(); console.log("the animation ended"); });
     //element.remove();
-    console.log("RemoveElement got called for:");
-    console.log(id);
+    let meme1 = document.getElementById("correct");
+    meme1.style.display = "none";
+    let meme2 = document.getElementById("incorrect");
+    meme2.style.display = "none";
 
 }
 function addElement(id) {
@@ -407,10 +361,21 @@ function removeBackground() {
 }
 function displayGrade(correct) {
     if (correct) {
-        document.body.style.backgroundColor = "green";
+        console.log("Correct:");
+        console.log(correct);
+        //document.body.style.backgroundColor = "green";
+        let meme1 = document.getElementById("correct");
+        meme1.style.display = "block";
     }
     else {
-        document.body.style.backgroundColor = "red";
+        console.log("Incorrect:");
+        console.log(correct);
+        //document.body.style.backgroundColor = "red";
+        let meme2 = document.getElementById("incorrect");
+        console.log("meme2 = " + meme2);
+        console.log("meme2:display: " + meme2.style.display)
+        meme2.style.display = "block";
+        console.log("meme2:display after change: " + meme2.style.display)
     }
 }
 
@@ -425,7 +390,7 @@ function displayHint1() {
     let hint1 = document.getElementById("hint1");
     hint1.title = "Next Question";
    /* if (hint1.style.display == "none") {
-        
+
         hint1.style.display = "block";
     }
     else {
