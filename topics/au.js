@@ -106,7 +106,7 @@ function displayQuestions(quiz, y) {
     //create a new div element
     var displayQ = document.createElement('div');
     displayQ.id = "question" + y;
-    addElement(displayQ);
+    addElement(displayQ, y);
     var t = document.createElement('div');
     t.innerHTML = quiz[y].getText();
 
@@ -275,7 +275,7 @@ function nextQuestion(quiz, y) {
             button.id = "submit";
             button.title = "Show your Score";
             button.className = "btnPlace";
-            button.addEventListener('click', function () { removeElement(y); displayResult(); });
+            button.addEventListener('click', function () { removeElement(y); displayResult(y); });
             //button.addEventListener('mouseover', function () { displayHint2(); });
             let btnContainer = document.getElementById("forBtns");
 
@@ -314,8 +314,13 @@ function nextQuestion(quiz, y) {
 function removeElement(currQ) {
     var id = "question" + currQ;
     var element = document.getElementById(id);
-    element.classList.add("remove1");
-    element.classList.remove("add1");
+    console.log("This is the currQ in removeElement: " + currQ);
+    let remId = "remove" + currQ;
+    console.log("This is the remId in removeElement: " +remId);
+    let add_id = "add" + currQ;
+    console.log("This is the add_id in removeElement: " + add_id);
+    element.classList.add(remId);
+    element.classList.remove(add_id);
     //element.addEventListener("animationend", function (id) { document.getElementById(id).remove(); console.log("the animation ended"); });
     //element.remove();
     let meme1 = document.getElementById("correct");
@@ -324,11 +329,13 @@ function removeElement(currQ) {
     meme2.style.display = "none";
 
 }
-function addElement(id) {
+function addElement(id, currQ) {
     //let div = document.getElementById(id);
-    id.classList.add("add1");
+    console.log("This is the currQ in addElement: " + currQ);
+    let addId = "add" + currQ;
+    id.classList.add(addId);
 }
-function displayResult() {
+function displayResult(y) {
     let elem = document.getElementById("question9");
     elem.addEventListener("animationend", function () {
         //remove the previous question
@@ -353,7 +360,7 @@ function displayResult() {
 
     div.appendChild(t);
     document.body.appendChild(div);
-    addElement(div);
+    addElement(div, y);
 }
 
 function removeBackground() {
