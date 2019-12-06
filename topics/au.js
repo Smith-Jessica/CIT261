@@ -17,6 +17,7 @@ function topFunction() {
    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 */
+localStorage.setItem("attempt_count", 0);
 class Question {
 
     constructor(question, correct_answer, incorrect_answers) {
@@ -51,7 +52,22 @@ class Question {
     }
 
 }
+class Attempt {
 
+    constructor(score, name) {
+        this.score = score;
+        this.name = name;
+    }
+    getScore() {
+        return this.score;
+    }
+    //I don't think I need a setScore
+    getName() {
+        return this.name;
+    }
+    //Might not need a setName either but we will see
+
+}
 
 
 function buildQuiz() {
@@ -85,12 +101,12 @@ function buildQuiz() {
                 //remove the 'Take Quiz' Button
                 removeButton("takeQuiz");
                 //display the quiz
-               
+
                 nextQuestion(quiz, currQ);
 
             }
             else {
-               // console.log("Error fetching quiz questions");
+                // console.log("Error fetching quiz questions");
             }
 
         } else {
@@ -101,7 +117,7 @@ function buildQuiz() {
 }
 
 function displayQuestions(quiz, y) {
-    
+
 
     //create a new div element
     var displayQ = document.createElement('div');
@@ -161,7 +177,6 @@ function checkAnswer(quiz, y) {
             let input = radios[i].value;
             //check against correct answer for each Q
             if (input == key) {
-
                 var pscore = localStorage.getItem("quiz_score");
                 var value = JSON.parse(pscore);
                 value = value + 5;
@@ -314,11 +329,11 @@ function nextQuestion(quiz, y) {
 function removeElement(currQ) {
     var id = "question" + currQ;
     var element = document.getElementById(id);
-    console.log("This is the currQ in removeElement: " + currQ);
+    //  console.log("This is the currQ in removeElement: " + currQ);
     let remId = "remove" + currQ;
-    console.log("This is the remId in removeElement: " +remId);
+    // console.log("This is the remId in removeElement: " +remId);
     let add_id = "add" + currQ;
-    console.log("This is the add_id in removeElement: " + add_id);
+    // console.log("This is the add_id in removeElement: " + add_id);
     element.classList.add(remId);
     element.classList.remove(add_id);
     //element.addEventListener("animationend", function (id) { document.getElementById(id).remove(); console.log("the animation ended"); });
@@ -331,7 +346,7 @@ function removeElement(currQ) {
 }
 function addElement(id, currQ) {
     //let div = document.getElementById(id);
-    console.log("This is the currQ in addElement: " + currQ);
+    //console.log("This is the currQ in addElement: " + currQ);
     let addId = "add" + currQ;
     id.classList.add(addId);
 }
@@ -351,38 +366,116 @@ function displayResult(y) {
         let btn = document.getElementById("submit");
         removeButton(btn.id);
     });
+
     var pscore = localStorage.getItem("quiz_score");
     var div = document.createElement('div');
     div.id = "results";
+    var username = document.createElement('div');
+    username.id = "username";
+    var label = document.createElement('label');
+    var input = document.createElement('input');
+
+    //add text to label
+    label.innerHTML = "&nbsp; Enter your name for the leaderboard:";
+
+    //configure the input type and id
+    input.type = "text";
+    input.name = "username";
+    input.id = "input_name";
+    var btn = document.createElement('button');
+    btn.id = "submit_name";
+    btn.addEventListener("click", function () {
+        //show the leaderboard
+        showLeaderBoard();
+    });
+
+    input.className = "text";
+    username.appendChild(label);
+    username.appendChild(input);
+
 
     var t = document.createElement('div');
     t.innerHTML = "<h1>Your Score is " + pscore + "</h1>";
 
+    username.appendChild(btn);
     div.appendChild(t);
+    div.appendChild(username);
     document.body.appendChild(div);
     addElement(div, y);
-}
 
+
+
+
+}
+function showLeaderBoard() {
+    var pscore = localStorage.getItem("quiz_score");
+    //add the attempt to the localStorage for the leaderboard
+    var count = localStorage.getItem("attempt_count");
+    let name = document.getElementById("input_name").value;
+    //console.log("This is the name value: " + name)
+    let attempt = new Attempt(pscore, name);
+    //console.log("This is the object in displayResult()");
+    //console.log(JSON.stringify(attempt));
+    if (count == 0) {
+        localStorage.setItem('attempt_0', JSON.stringify(attempt));
+        localStorage.setItem('attempt_count', count++);
+    }
+    else {
+        localStorage.setItem("attempt_" + count, JSON.stringify(attempt));
+        localStorage.setItem('attempt_count', count++);
+    }
+    //create the leaderboard table
+    let table = document.createElement('table');
+    let row = document.createElement('tr');
+    let header_name = document.createElement('th'); 
+    let header_score = document.createElement('th');
+
+    header_name.innerText = "Name";
+    header_score.innerText = "Score";
+    
+    row.appendChild(header_name);
+    row.appendChild(header_score);
+    table.appendChild(row);
+
+    var count = localStorage.getItem("attempt_count");
+    console.log("this is outside of the for loop in showLeaderBoard()");
+    //let storage = 
+    for (let i = 0; i <= count; i++) {
+        //let name = document.getElementById("input_name").value;
+        let attempt_1 = JSON.parse(localStorage.getItem("attempt_" + i));
+        let row_1 = document.createElement('tr');
+        let name = document.createElement('td');
+        let score = document.createElement('td');
+
+        name.innerText = attempt_1.name;
+        score.innerText = attempt_1.score;
+
+        row_1.appendChild(name);
+        row_1.appendChild(score);
+        table.appendChild(row_1);
+    }
+    document.body.appendChild(table);
+}
 function removeBackground() {
     document.body.style.backgroundColor = "#fefefe";
 }
 function displayGrade(correct) {
     if (correct) {
-        console.log("Correct:");
-        console.log(correct);
+        //  console.log("Correct:");
+        //  console.log(correct);
         //document.body.style.backgroundColor = "green";
         let meme1 = document.getElementById("correct");
         meme1.style.display = "block";
     }
     else {
-        console.log("Incorrect:");
-        console.log(correct);
+        //   console.log("Incorrect:");
+        //   console.log(correct);
         //document.body.style.backgroundColor = "red";
         let meme2 = document.getElementById("incorrect");
-        console.log("meme2 = " + meme2);
-        console.log("meme2:display: " + meme2.style.display)
+        //   console.log("meme2 = " + meme2);
+        //   console.log("meme2:display: " + meme2.style.display)
         meme2.style.display = "block";
-        console.log("meme2:display after change: " + meme2.style.display)
+        //   console.log("meme2:display after change: " + meme2.style.display)
     }
 }
 
