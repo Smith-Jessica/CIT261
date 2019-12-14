@@ -176,7 +176,7 @@ function checkAnswer(quiz, y) {
 
             let input = radios[i].value;
             //check against correct answer for each Q
-            if (input == key) {
+            if (input == key) { 
                 var pscore = localStorage.getItem("quiz_score");
                 var value = JSON.parse(pscore);
                 value = value + 5;
