@@ -163,7 +163,9 @@ function displayQuestions(quiz, y) {
 
 function removeButton(id) {
     var button = document.getElementById(id);
+    var parent = button.parentNode;
     button.parentNode.removeChild(button);
+    parent.parentNode.removeChild(parent);
 }
 function checkAnswer(quiz, y) {
     //get user input
@@ -225,7 +227,7 @@ function nextQuestion(quiz, y) {
                 let btn = document.createElement('button');
                 btn.id = "btn1";
                 btn.innerText = "Next";
-                btn.className = "btnPlace";
+                btn.className = "NextBtn";
                 btn.title = "Next Question";
                 btn.onclick = function () {
                     checkAnswer(quiz, y); setTimeout(function () {
@@ -236,6 +238,7 @@ function nextQuestion(quiz, y) {
 
                 let btnContainer = document.createElement('div');
                 btnContainer.id = "forBtns";
+                btnContainer.className = "QuizForm";
                 document.body.appendChild(btnContainer);
 
 

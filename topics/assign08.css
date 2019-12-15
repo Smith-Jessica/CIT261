@@ -35,7 +35,7 @@ button#myBtn {
     /**/
     display: none;
     /* Hidden by default */
-    position: fixed;
+    /*position: fixed;*/
     bottom: 20px;
     /* Place the button at the bottom of the page */
     right: 30px;
@@ -56,7 +56,7 @@ button#myBtn {
 button {
     /**/
 
-    position: absolute;
+    /*position: absolute;*/
     z-index: 99;
     /* Make sure it does not overlap */
     border: none;
@@ -72,7 +72,6 @@ button {
 
 button#btn1 {
     left: 100px;
-    position: absolute;
     z-index: 99;
     /* Make sure it does not overlap */
     border: none;
@@ -84,6 +83,8 @@ button#btn1 {
     font-size: 18px;
     cursor: pointer;
     transition: all .5s;
+    max-width: 80px;
+    max-height: 50px;
 }
 
 button#takeQuiz {
@@ -92,6 +93,7 @@ button#takeQuiz {
 
 button#takeQuiz:hover {
     padding: 20px;
+    transform: scale(2);
     background-color: rgba(25, 27, 27, 0.74);
 }
 
@@ -139,31 +141,64 @@ td {
         transform: translate(5000px)
     }
 }
+.grid-container {
+    display: grid;
+    grid-template-columns: 0.25fr 1fr 3fr 1fr 0.25fr;
+    grid-template-rows: 1fr 1.5fr 1fr;
+    grid-template-areas: ". . Logo . ." ". . QuizForm . ." ". . . . .";
+    background-color: gray;
+  }
+  
+  .Logo { grid-area: Logo; background-color: white;}
+  
+  .QuizForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: ". TakeQuizBtn ." ". . .";
+    grid-area: QuizForm;
+    background-color: white;
+  }
+  
+  .TakeQuizBtn {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: ". TQB ." ". . .";
+    grid-area: TakeQuizBtn;
+  }
+  
+  .TQB { grid-area: TQB; }
 
+  .NextBtn {
+    grid-column: 2;
+    grid-row: TakeQuizBtn-end;
+  }
 @media only screen and (max-width: 600px) {
 
-    .grid {
+    /*.grid {
         display: inline-grid;
         grid-template-columns: auto;
 
-    }
+    }*/
 
 }
 
 @media only screen and (min-width: 600px) {
 
-    .grid {
+   /* .grid {
         display: inline-grid;
         grid-template-columns: auto auto auto auto auto;
         grid-template-rows: auto auto auto;
     }
+    */
 }
 
 @media only screen and (min-width: 1000px) {
-    .grid {
+   /* .grid {
         display: inline-grid;
         grid-template-columns: auto auto auto auto auto;
         grid-template-rows: auto auto auto
     }
-
+*/
 }

@@ -4,60 +4,90 @@
 }
 .add0 {
     animation: addQ0 2s ease-in-out forwards;
+    padding: 20px;
+    font-size: calc(5px + 1vw);
+    grid-column: 1 / 3;
 }
 .remove1 {
   animation: removeQ1 1s ease-in-out forwards;
 }
 .add1 {
     animation: addQ1 2s ease-in-out forwards;
+    padding: 20px;
+    font-size: calc(5px + 1vw);
+    grid-column: 1 / 3;
 }
 .remove2 {
   animation: removeQ2 2s ease-in-out forwards;
 }
 .add2 {
   animation: addQ2 1s ease-in-out forwards;
+  padding: 20px;
+  font-size: calc(5px + 1vw);
+  grid-column: 1 / 3;
 }
 .remove3 {
   animation: removeQ3 1s ease-in-out forwards;
 }
 .add3 {
     animation: addQ3 3s ease-in-out forwards;
+    padding: 20px;
+    font-size: calc(5px + 1vw);
+    grid-column: 1 / 3;
 }
 .remove4 {
   animation: removeQ4 5s ease-in-out forwards;
 }
 .add4 {
   animation: addQ4 5s ease-in-out;
+  padding: 20px;
+  font-size: calc(5px + 1vw);
+  grid-column: 1 / 3;
 }
 .remove5 {
   animation: removeQ0 1s ease-in-out forwards;
 }
 .add5 {
   animation: addQ0 3s ease-in-out forwards;
+  padding: 20px;
+  font-size: calc(5px + 1vw);
+  grid-column: 1 / 3;
 }
 .remove6 {
   animation: removeQ1 1s ease-in-out forwards;
 }
 .add6 {
     animation: addQ1 3s ease-in-out forwards;
+    padding: 20px;
+    font-size: calc(5px + 1vw);
+    grid-column: 1 / 3;
 }
 .remove7 {
   animation: removeQ2 1s ease-in-out forwards;
 }
 .add7 {
     animation: addQ2 3s ease-in-out forwards;
+    padding: 20px;
+    font-size: calc(5px + 1vw);
+    grid-column: 1 / 3;
 }
 .remove8 {
   animation: removeQ3 1s ease-in-out forwards;
 }
 .add8 {
     animation: addQ3 3s ease-in-out forwards;
+    padding: 20px;
+    font-size: calc(5px + 1vw);
+    grid-column: 1 / 3;
 }
 .remove9 {
   animation: removeQ4 1s ease-in-out forwards;
 }
 .add9 {
     animation: addQ4 3s ease-in-out forwards;
+    padding: 20px;
+    font-size: calc(5px + 1vw);
+    grid-column: 1 / 3;
 }
 @keyframes removeQ0 {
   from {
