@@ -412,6 +412,7 @@ function displayResult(y) {
     //create another div to show their score
     var t = document.createElement('div');
     t.className = "username";
+    t.id="score";
     t.innerHTML = "<h1>Your Score is " + pscore + "</h1>";
 
     //append the submit button to the username form
@@ -431,26 +432,29 @@ function displayResult(y) {
     addElement(div, y);
 
 
-
-
 }
 function showLeaderBoard() {
+    //get what, if anything, is in localStorage right now (aka an array of attempts)
+    let attempt_ar = JSON.parse(localStorage.getItem("attempt_arr"));
     var pscore = localStorage.getItem("quiz_score");
-    //add the attempt to the localStorage for the leaderboard
-    var count = localStorage.getItem("attempt_count");
     let name = document.getElementById("input_name").value;
-    //console.log("This is the name value: " + name)
-    let attempt = new Attempt(pscore, name);
-    //console.log("This is the object in displayResult()");
-    //console.log(JSON.stringify(attempt));
-    if (count == 0) {
-        localStorage.setItem('attempt_0', JSON.stringify(attempt));
-        localStorage.setItem('attempt_count', count++);
+
+    if(attempt_ar == null){ 
+        var attempt_arr = new Array();
+        let attempt = new Attempt(pscore, name);
+        attempt_arr.push(attempt);
+        localStorage.setItem("attempt_arr", JSON.stringify(attempt_arr));
     }
     else {
-        localStorage.setItem("attempt_" + count, JSON.stringify(attempt));
-        localStorage.setItem('attempt_count', count++);
+        let new_attempt =  new Attempt(pscore, name);
+        attempt_ar.push(new_attempt);
+        localStorage.setItem("attempt_arr", JSON.stringify(attempt_ar));
     }
+ 
+    //remove the username form
+    var form = document.getElementById("username");
+    form.parentNode.removeChild(form);
+    
     //create the leaderboard table
     let table = document.createElement('table');
     let row = document.createElement('tr');
@@ -464,28 +468,41 @@ function showLeaderBoard() {
     row.appendChild(header_score);
     table.appendChild(row);
 
-    var count = localStorage.getItem("attempt_count");
-    console.log("this is outside of the for loop in showLeaderBoard()");
-    //let storage = 
-    for (let i = 0; i <= count; i++) {
-        //let name = document.getElementById("input_name").value;
-        let attempt_1 = JSON.parse(localStorage.getItem("attempt_" + i));
+    var count = JSON.parse(localStorage.getItem("attempt_arr"));
+    
+    //display the leaderboard
+    for (let i = 0; i < count.length; i++) {
+
         let row_1 = document.createElement('tr');
         let name = document.createElement('td');
         let score = document.createElement('td');
 
-        name.innerText = attempt_1.name;
-        score.innerText = attempt_1.score;
+        name.innerText = count[i].name;
+        score.innerText = count[i].score;
 
         row_1.appendChild(name);
         row_1.appendChild(score);
         table.appendChild(row_1);
     }
+
+    //add a retake button
+    var btn = document.createElement('button');
+    btn.className = "submitBtn";
+    btn.innerText = "Take Again";
+    btn.id="takeQuiz";
+    btn.addEventListener("click", function () {
+        //remove the score
+        var elem = document.getElementById("score");
+        elem.parentNode.removeChild(elem);
+        //elem.classList.add("remove4");
+        //start the quiz over again
+        buildQuiz();
+    });
+    table.appendChild(btn);
     document.body.appendChild(table);
+
 }
-function removeBackground() {
-    document.body.style.backgroundColor = "#fefefe";
-}
+
 function displayGrade(correct) {
     if (correct) {
         //  console.log("Correct:");
