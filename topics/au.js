@@ -490,20 +490,21 @@ function showLeaderBoard() {
 
     //add a retake button
     var btn = document.createElement('button');
-    btn.className = "submitBtn";
+    btn.className = "retake";
     btn.innerText = "Take Again";
     btn.id="takeQuiz";
     btn.addEventListener("click", function () {
         //remove the score
         var elem = document.getElementById("score");
+        var parent = elem.parentNode;
         elem.parentNode.removeChild(elem);
+        parent.parentNode.removeChild(parent);
         //elem.classList.add("remove4");
         //start the quiz over again
         buildQuiz();
     });
-    
+    div.appendChild(btn);
     document.body.appendChild(div);
-    document.body.appendChild(btn);
 
 }
 
