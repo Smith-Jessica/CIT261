@@ -178,6 +178,10 @@ td {
   .username {
     grid-column: 4;
   }
+  .leaderboard {
+      grid-column: inherit;
+      grid-row: inherit;
+  }
 @media only screen and (max-width: 600px) {
 
     /*.grid {

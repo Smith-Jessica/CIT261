@@ -377,7 +377,7 @@ function displayResult(y) {
     //create a div to hold everything
     var div = document.createElement('div');
     div.id = "results";
-    div.className = "QuizForm";
+    //div.className = "QuizForm";
 
     //create a div to hold the username form
     var username = document.createElement('div');
@@ -456,7 +456,10 @@ function showLeaderBoard() {
     form.parentNode.removeChild(form);
     
     //create the leaderboard table
+    let div = document.createElement('div');
+    div.className = "QuizForm";
     let table = document.createElement('table');
+    table.className = "leaderboard";
     let row = document.createElement('tr');
     let header_name = document.createElement('th');
     let header_score = document.createElement('th');
@@ -467,7 +470,7 @@ function showLeaderBoard() {
     row.appendChild(header_name);
     row.appendChild(header_score);
     table.appendChild(row);
-
+    div.appendChild(table);
     var count = JSON.parse(localStorage.getItem("attempt_arr"));
     
     //display the leaderboard
@@ -498,8 +501,9 @@ function showLeaderBoard() {
         //start the quiz over again
         buildQuiz();
     });
-    table.appendChild(btn);
-    document.body.appendChild(table);
+    
+    document.body.appendChild(div);
+    document.body.appendChild(btn);
 
 }
 
