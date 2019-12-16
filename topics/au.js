@@ -165,7 +165,8 @@ function removeButton(id) {
     var button = document.getElementById(id);
     var parent = button.parentNode;
     button.parentNode.removeChild(button);
-    parent.parentNode.removeChild(parent);
+    if (id == "takeQuiz")
+        parent.parentNode.removeChild(parent);
 }
 function checkAnswer(quiz, y) {
     //get user input
@@ -178,7 +179,7 @@ function checkAnswer(quiz, y) {
 
             let input = radios[i].value;
             //check against correct answer for each Q
-            if (input == key) { 
+            if (input == key) {
                 var pscore = localStorage.getItem("quiz_score");
                 var value = JSON.parse(pscore);
                 value = value + 5;
@@ -292,7 +293,7 @@ function nextQuestion(quiz, y) {
             button.innerHTML = "Submit";
             button.id = "submit";
             button.title = "Show your Score";
-            button.className = "btnPlace";
+            button.className = "submitBtn";
             button.addEventListener('click', function () { removeElement(y); displayResult(y); });
             //button.addEventListener('mouseover', function () { displayHint2(); });
             let btnContainer = document.getElementById("forBtns");
@@ -370,11 +371,18 @@ function displayResult(y) {
         removeButton(btn.id);
     });
 
+    //get their latest score
     var pscore = localStorage.getItem("quiz_score");
+
+    //create a div to hold everything
     var div = document.createElement('div');
     div.id = "results";
+    div.className = "QuizForm";
+
+    //create a div to hold the username form
     var username = document.createElement('div');
     username.id = "username";
+    username.className = "username";
     var label = document.createElement('label');
     var input = document.createElement('input');
 
@@ -385,25 +393,41 @@ function displayResult(y) {
     input.type = "text";
     input.name = "username";
     input.id = "input_name";
+    input.className = "text";
+
+    //create a submit button for the leaderboard form
     var btn = document.createElement('button');
     btn.id = "submit_name";
+    btn.innerHTML = "Submit";
+    btn.type = "button";
     btn.addEventListener("click", function () {
         //show the leaderboard
         showLeaderBoard();
     });
 
-    input.className = "text";
+    //append the input and label to the username div
     username.appendChild(label);
     username.appendChild(input);
 
-
+    //create another div to show their score
     var t = document.createElement('div');
+    t.className = "username";
     t.innerHTML = "<h1>Your Score is " + pscore + "</h1>";
 
+    //append the submit button to the username form
     username.appendChild(btn);
+    //append the score to the first div
     div.appendChild(t);
+    //append the username form to the first div
     div.appendChild(username);
-    document.body.appendChild(div);
+
+    //find the form in the DOM
+    var form = document.getElementById("quiz");
+
+    //append the first div to the form (for formatting)
+    form.appendChild(div);
+
+    //add animations
     addElement(div, y);
 
 
@@ -430,12 +454,12 @@ function showLeaderBoard() {
     //create the leaderboard table
     let table = document.createElement('table');
     let row = document.createElement('tr');
-    let header_name = document.createElement('th'); 
+    let header_name = document.createElement('th');
     let header_score = document.createElement('th');
 
     header_name.innerText = "Name";
     header_score.innerText = "Score";
-    
+
     row.appendChild(header_name);
     row.appendChild(header_score);
     table.appendChild(row);

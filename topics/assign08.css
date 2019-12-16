@@ -31,15 +31,9 @@ div.sources {
     font-size: calc(16px + 0.5vw);
 }
 
-button#myBtn {
+button#submit {
     /**/
-    display: none;
-    /* Hidden by default */
     /*position: fixed;*/
-    bottom: 20px;
-    /* Place the button at the bottom of the page */
-    right: 30px;
-    /* Place the button 30px from the right */
     z-index: 99;
     /* Make sure it does not overlap */
     border: none;
@@ -51,10 +45,12 @@ button#myBtn {
     font-size: 18px;
     cursor: pointer;
     transition: all .5s;
+    max-width: 80px;
+    max-height: 50px;
 }
 
 button {
-    /**/
+    
 
     /*position: absolute;*/
     z-index: 99;
@@ -67,7 +63,8 @@ button {
     border-radius: 5px;
     font-size: 18px;
     cursor: pointer;
-
+   /* max-width: 80px;
+    max-height: 50px;*/
 }
 
 button#btn1 {
@@ -173,6 +170,13 @@ td {
   .NextBtn {
     grid-column: 2;
     grid-row: TakeQuizBtn-end;
+  }
+  .submitBtn {
+    grid-column: 2;
+    grid-row: TakeQuizBtn-end;
+  }
+  .username {
+    grid-column: 4;
   }
 @media only screen and (max-width: 600px) {
 
